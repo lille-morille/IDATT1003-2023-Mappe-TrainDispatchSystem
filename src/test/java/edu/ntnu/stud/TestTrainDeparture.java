@@ -3,7 +3,6 @@ package edu.ntnu.stud;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.sun.jdi.Value;
 import java.time.Duration;
 import org.junit.jupiter.api.Test;
 
