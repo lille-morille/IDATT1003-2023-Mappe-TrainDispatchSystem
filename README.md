@@ -1,5 +1,7 @@
-# Portfolio project IDATA1003 - 2023
-This file uses Mark Down syntax. For more information see [here](https://www.markdownguide.org/basic-syntax/).
+# Portfolio project IDATT1003 - 2023
+
+This file uses Mark Down syntax. For more information
+see [here](https://www.markdownguide.org/basic-syntax/).
 
 STUDENT NAME = Anders Morille  
 STUDENT ID = 111708
