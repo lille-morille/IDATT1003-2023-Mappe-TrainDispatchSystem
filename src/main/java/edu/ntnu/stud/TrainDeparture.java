@@ -30,6 +30,23 @@ public class TrainDeparture {
    */
   public TrainDeparture(int departureHours, int departureMinutes, String line, int trainNumber,
                         String destination, int track, int delayMinutes) {
+    validateParams(departureHours, departureMinutes, line, trainNumber, destination, track,
+        delayMinutes);
+
+    this.departureTime = LocalTime.of(departureHours, departureMinutes, 0, 0);
+    this.line = line;
+    this.trainNumber = trainNumber;
+    this.destination = destination;
+    this.track = track;
+    this.delay = Duration.ofMinutes(delayMinutes);
+  }
+
+  /**
+   * Validates that all parameters passed into the constructor are valid.
+   */
+  private static void validateParams(int departureHours, int departureMinutes, String line,
+                                     int trainNumber, String destination, int track,
+                                     int delayMinutes) {
     // Validation
     assert delayMinutes >= 0 && delayMinutes < 60 * 24 :
         "Delay cannot be negative or greater than one day";
@@ -41,13 +58,6 @@ public class TrainDeparture {
     assert trainNumber > 0 : "Train number must be positive";
     assert !destination.isEmpty() : "Destination cannot be empty";
     assert track > 0 : "Track must be positive";
-
-    this.departureTime = LocalTime.of(departureHours, departureMinutes, 0, 0);
-    this.line = line;
-    this.trainNumber = trainNumber;
-    this.destination = destination;
-    this.track = track;
-    this.delay = Duration.ofMinutes(delayMinutes);
   }
 
   /**
@@ -56,7 +66,6 @@ public class TrainDeparture {
   public LocalTime getFinalDepartureTime() {
     return departureTime.plusSeconds(delay.toSeconds());
   }
-
 
   /**
    * Returns the original departure time without delay information.
@@ -116,5 +125,53 @@ public class TrainDeparture {
    */
   public void setDelay(Duration delay) {
     this.delay = delay;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s-%s |%d| train-%d %d min delay",
+        getFinalDepartureTime().toString(),
+        getLine(),
+        getDestination(),
+        getTrack(),
+        getTrainNumber(),
+        getDelay().toMinutes()
+    );
+  }
+
+  /**
+   * Returns the first pieces of information to display in the departure table.
+   */
+  public String getCoreInfo() {
+    return String.format("%s %s-%s",
+        getFinalDepartureTime().toString(),
+        getLine(),
+        getDestination());
+  }
+
+  /**
+   * Returns the second pieces of information to display in the departure table.
+   */
+  public String getTrackDelayInfo() {
+    return String.format("|%d| n.%s %s",
+        getTrack(),
+        getTrainNumber(),
+        getDelay().toMinutes() == 0 ? "" : getDelay().toMinutes() + " min delay");
+  }
+
+  /**
+   * Returns a formatted string with the departure information.
+   * This is used to align the departure information in columns.
+   *
+   * @param maxCoreLength       The maximum length of the core info across all train departures.
+   * @param maxTrackDelayLength The maximum length of the track delay info across all train
+   * @return A formatted string with the departure information, that fits with the rest.
+   */
+  public String toFormattedString(int maxCoreLength, int maxTrackDelayLength) {
+    return String.format("%s%s%s%s",
+        getCoreInfo(),
+        " ".repeat(maxCoreLength - getCoreInfo().length() + 1),
+        getTrackDelayInfo(),
+        " ".repeat(maxTrackDelayLength - getTrackDelayInfo().length() + 1));
   }
 }

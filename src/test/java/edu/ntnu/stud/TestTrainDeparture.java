@@ -331,4 +331,109 @@ public final class TestTrainDeparture {
   }
 
   // endregion
+
+  // region toString
+
+  @Test
+  public void testToString() {
+    TrainDeparture departure = new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        1,
+        10
+    );
+    assertEquals(departure.toString(),
+        "10:40 L4-Bergen |1| train-200 10 min delay");
+  }
+
+  @Test
+  void testGetCoreInfo() {
+    TrainDeparture departure = new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        1,
+        10
+    );
+
+    assertEquals(departure.getCoreInfo(), "10:40 L4-Bergen");
+
+    // Another example
+    departure = new TrainDeparture(
+        10,
+        35,
+        "R3",
+        200,
+        "Trondheim",
+        2,
+        5
+    );
+
+    assertEquals(departure.getCoreInfo(), "10:40 R3-Trondheim");
+  }
+
+  @Test
+  void testGetTrackDelayInfo() {
+    TrainDeparture departure = new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        1,
+        10
+    );
+
+    assertEquals(departure.getTrackDelayInfo(), "|1| n.200 10 min delay");
+
+    // Another example
+    departure = new TrainDeparture(
+        10,
+        35,
+        "R3",
+        300,
+        "Trondheim",
+        2,
+        5
+    );
+
+    assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5 min delay");
+  }
+
+  @Test
+  void testToFormattedString() {
+    TrainDeparture departure = new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        1,
+        10
+    );
+
+    assertEquals("10:40 L4-Bergen |1| n.200 10 min delay", departure.toFormattedString(15, 21));
+
+    // Another example
+    departure = new TrainDeparture(
+        10,
+        35,
+        "R3",
+        300,
+        "Trondheim",
+        2,
+        5
+    );
+
+    assertEquals("10:40 R3-Trondheim   |2| n.300 5 min delay  ", departure.toFormattedString(20,
+        22));
+  }
+
+
+  // endregion
 }
