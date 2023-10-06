@@ -1,8 +1,5 @@
 # Portfolio project IDATT1003 - 2023
 
-This file uses Mark Down syntax. For more information
-see [here](https://www.markdownguide.org/basic-syntax/).
-
 STUDENT NAME = Anders Morille  
 STUDENT ID = 111708
 
@@ -25,7 +22,7 @@ What is the input and output of the program? What is the expected behaviour of t
 
 ## How to run the tests
 
-[//]: # (TODO: Describe how to run the tests here.)
+- Enter the command `mvn clean test` in the terminal to run all unit tests for the project
 
 ## References
 
