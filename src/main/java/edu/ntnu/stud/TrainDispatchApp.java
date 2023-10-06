@@ -4,6 +4,9 @@ package edu.ntnu.stud;
  * This is the main class for the train dispatch application.
  */
 public class TrainDispatchApp {
+  /**
+   * The entry point of the program.
+   */
   public static void main(String[] args) {
     TrainDispatchApp app = new TrainDispatchApp();
     app.init();
