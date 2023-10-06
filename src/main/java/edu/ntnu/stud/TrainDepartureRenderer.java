@@ -4,6 +4,13 @@ package edu.ntnu.stud;
  * Handles rendering Train Departures into a nice table format.
  */
 public class TrainDepartureRenderer {
+
+  /**
+   * Calibration constant for the amount of spaces before the vertical border.
+   * Adjusted to make the table look nice.
+   */
+  public static final int BORDER_SPACE_CALIBRATION = 7;
+
   /**
    * Renders a set of train departures into a nice table format in the terminal.
    * Uses System.out.println to write to the terminal.
@@ -12,14 +19,14 @@ public class TrainDepartureRenderer {
     MaxLengths maxLengths = getMaxLengths(departures);
 
     System.out.println(
-        getVerticalBorder(maxLengths.maxCoreLength() + maxLengths.maxTrackDelayLength()));
+        getVerticalEndBorder(maxLengths.maxCoreLength() + maxLengths.maxTrackDelayLength()));
 
     for (TrainDeparture departure : departures) {
       renderDeparture(departure, maxLengths);
     }
 
     System.out.println(
-        getVerticalBorder(maxLengths.maxCoreLength() + maxLengths.maxTrackDelayLength()));
+        getVerticalEndBorder(maxLengths.maxCoreLength() + maxLengths.maxTrackDelayLength()));
   }
 
   /**
@@ -66,8 +73,8 @@ public class TrainDepartureRenderer {
    *                       spaces before the border
    * @return A vertical border string with leading spaces to format the table correctly
    */
-  private static String getVerticalBorder(int maxTotalLength) {
-    return new String(new char[maxTotalLength + 7]).replace("\0", "=");
+  private static String getVerticalEndBorder(int maxTotalLength) {
+    return new String(new char[maxTotalLength + BORDER_SPACE_CALIBRATION]).replace("\0", "=");
   }
 
   /**
