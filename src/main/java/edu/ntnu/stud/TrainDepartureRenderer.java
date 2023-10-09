@@ -18,8 +18,7 @@ public class TrainDepartureRenderer {
   public static void renderDepartures(TrainDeparture[] departures) {
     MaxLengths maxLengths = getMaxLengths(departures);
 
-    System.out.println(
-        getVerticalEndBorder(maxLengths.maxCoreLength() + maxLengths.maxTrackDelayLength()));
+    System.out.println(getVerticalHeaderBorder(maxLengths));
 
     for (TrainDeparture departure : departures) {
       renderDeparture(departure, maxLengths);
@@ -36,10 +35,10 @@ public class TrainDepartureRenderer {
    * @param maxLengths The max lengths computed
    */
   private static void renderDeparture(TrainDeparture departure, MaxLengths maxLengths) {
-    System.out.print("|| ");
+    System.out.print("|  ");
     System.out.print(departure.toFormattedString(maxLengths.maxCoreLength(),
         maxLengths.maxTrackDelayLength()));
-    System.out.println("||");
+    System.out.println(" |");
   }
 
   /**
@@ -75,6 +74,23 @@ public class TrainDepartureRenderer {
    */
   private static String getVerticalEndBorder(int maxTotalLength) {
     return new String(new char[maxTotalLength + BORDER_SPACE_CALIBRATION]).replace("\0", "=");
+  }
+
+  /**
+   * Creates the top header border with titles for each column.
+   *
+   * @param maxLengths The max lengths computed, used for calibrating headers with columns.
+   * @return The top header bar to display in the table.
+   */
+  private static String getVerticalHeaderBorder(MaxLengths maxLengths) {
+    // should look like this: ===time===line===destination===|track|train|delay===
+    final var base = "time==line|dest";
+    var str = "===" + base;
+    str += new String(new char[maxLengths.maxCoreLength() - base.length() + 1]).replace("\0", "=");
+    str += "track|train|delay";
+    str += new String(new char[maxLengths.maxTrackDelayLength() - "track|train|delay".length() + 3])
+        .replace("\0", "=");
+    return str;
   }
 
   /**
