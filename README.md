@@ -23,6 +23,7 @@ What is the input and output of the program? What is the expected behaviour of t
 ## How to run the tests
 
 - Enter the command `mvn clean test` in the terminal to run all unit tests for the project
+- Or if you're using IntelliJ IDEA, select "Test Project" from the run configurations
 
 ## References
 
