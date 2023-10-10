@@ -1,12 +1,9 @@
 package edu.ntnu.stud.commands;
 
-import com.sun.source.tree.LambdaExpressionTree;
 import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.utils.PatternMatcher;
-import java.util.List;
 import java.util.Scanner;
-import javax.management.remote.SubjectDelegationPermission;
 
 /**
  * Adds a train departure to the list of departures.
@@ -22,8 +19,7 @@ public final class AddDepartureCommand extends Command {
     System.out.println("Add train departure");
 
     // TRAIN NUMBER
-    int trainNumber = 0;
-
+    int trainNumber;
 
     while (true) {
       System.out.println("Enter train number (positive integer): ");
@@ -59,8 +55,8 @@ public final class AddDepartureCommand extends Command {
     // Skip the next line
     in.nextLine();
 
-    int departureHour = 0;
-    int departureMinute = 0;
+    int departureHour;
+    int departureMinute;
 
     // DEPARTURE TIME
     String departureTime;

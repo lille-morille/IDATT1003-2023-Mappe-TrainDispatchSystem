@@ -1,8 +1,6 @@
 package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
-import edu.ntnu.stud.models.TrainDeparture;
-import java.util.List;
 
 /**
  * Base class for all commands.

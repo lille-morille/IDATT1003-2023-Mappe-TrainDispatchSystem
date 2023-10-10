@@ -3,7 +3,6 @@ package edu.ntnu.stud.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.ntnu.stud.models.TrainDeparture;
-import edu.ntnu.stud.utils.TrainDepartureRenderer;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
