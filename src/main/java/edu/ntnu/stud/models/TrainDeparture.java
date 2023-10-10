@@ -1,5 +1,6 @@
 package edu.ntnu.stud.models;
 
+import edu.ntnu.stud.utils.DurationRenderer;
 import java.time.Duration;
 import java.time.LocalTime;
 
@@ -156,7 +157,7 @@ public class TrainDeparture {
     return String.format("|%d| n.%s %s",
         getTrack(),
         getTrainNumber(),
-        getDelay().toMinutes() == 0 ? "" : getDelay().toMinutes() + " min delay");
+        DurationRenderer.render(getDelay()));
   }
 
   /**
