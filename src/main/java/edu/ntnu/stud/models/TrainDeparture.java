@@ -151,18 +151,6 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
-  @Override
-  public String toString() {
-    return String.format("%s %s-%s |%d| train-%d %d min delay",
-        getFinalDepartureTime().toString(),
-        getLine(),
-        getDestination(),
-        getTrack(),
-        getTrainNumber(),
-        getDelay().toMinutes()
-    );
-  }
-
   /**
    * Returns the first pieces of information to display in the departure table.
    */
@@ -197,5 +185,22 @@ public class TrainDeparture {
         " ".repeat(maxCoreLength - getCoreInfo().length() + 1),
         getTrackDelayInfo(),
         " ".repeat(maxTrackDelayLength - getTrackDelayInfo().length() + 1));
+  }
+
+  @Override
+  public String toString() {
+    String delayString = DurationRenderer.render(getDelay());
+    String str = String.format(
+        "Train %s %s-%s departs at %s from track %d",
+        getTrainNumber(),
+        getLine(),
+        getDestination(),
+        getFinalDepartureTime(),
+        getTrack());
+    if (!delayString.isEmpty()) {
+      return str + " with a delay of " + delayString;
+    } else {
+      return str;
+    }
   }
 }
