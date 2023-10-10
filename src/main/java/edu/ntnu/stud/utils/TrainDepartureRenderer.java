@@ -24,7 +24,7 @@ public class TrainDepartureRenderer {
       return;
     }
 
-    MaxLengths maxLengths = getMaxLengths(departures);
+    var maxLengths = MaxLengths.fromDepartures(departures);
 
     System.out.println(getVerticalHeaderBorder(maxLengths));
 
@@ -50,30 +50,6 @@ public class TrainDepartureRenderer {
   }
 
   /**
-   * Computes the max lengths for each part in the table.
-   * This allows us to align the track number and end borders evenly.
-   */
-  private static MaxLengths getMaxLengths(List<TrainDeparture> departures) {
-    // Find the longest core info and track delay info
-    // So we can align everything nicely in columns
-    int maxCoreLength = 0;
-    int maxTrackDelayLength = 0;
-
-    for (TrainDeparture departure : departures) {
-      var coreLength = departure.getCoreInfo().length();
-      var trackDelayLength = departure.getTrackDelayInfo().length();
-
-      if (coreLength > maxCoreLength) {
-        maxCoreLength = coreLength;
-      }
-      if (trackDelayLength > maxTrackDelayLength) {
-        maxTrackDelayLength = trackDelayLength;
-      }
-    }
-    return new MaxLengths(maxCoreLength, maxTrackDelayLength);
-  }
-
-  /**
    * Creates a vertical border with leading spaces.
    *
    * @param maxTotalLength The maximum total length of the table, to append the correct amount of
@@ -95,12 +71,12 @@ public class TrainDepartureRenderer {
     final var base = "time==line|dest";
     var str = "===" + base;
     str +=
-        new String(new char[Math.max(maxLengths.maxCoreLength() - base.length() + 1, 0)]).replace(
+        new String(new char[Math.max(maxLengths.maxCoreLength() - base.length() + 1, 1)]).replace(
             "\0",
             "=");
-    str += "track|train|delay";
+    str += "track|train";
     str += new String(
-        new char[Math.max(maxLengths.maxTrackDelayLength() - "track|train|delay".length() + 3, 0)])
+        new char[Math.max(maxLengths.maxTrackDelayLength() - "track|train".length() + 3, 3)])
         .replace("\0", "=");
     return str;
   }
@@ -109,5 +85,28 @@ public class TrainDepartureRenderer {
    * Simple struct for storing the max core length and track delay length.
    */
   private record MaxLengths(int maxCoreLength, int maxTrackDelayLength) {
+    /**
+     * Computes the max lengths for each part in the table.
+     * This allows us to align the track number and end borders evenly.
+     */
+    public static MaxLengths fromDepartures(List<TrainDeparture> departures) {
+      // Find the longest core info and track delay info
+      // So we can align everything nicely in columns
+      int maxCoreLength = 0;
+      int maxTrackDelayLength = 0;
+
+      for (TrainDeparture departure : departures) {
+        var coreLength = departure.getCoreInfo().length();
+        var trackDelayLength = departure.getTrackDelayInfo().length();
+
+        if (coreLength > maxCoreLength) {
+          maxCoreLength = coreLength;
+        }
+        if (trackDelayLength > maxTrackDelayLength) {
+          maxTrackDelayLength = trackDelayLength;
+        }
+      }
+      return new MaxLengths(maxCoreLength, maxTrackDelayLength);
+    }
   }
 }
