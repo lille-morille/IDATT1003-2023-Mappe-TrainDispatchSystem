@@ -15,6 +15,15 @@ import java.util.Scanner;
  * This is the main class for the train dispatch application.
  */
 public class TrainDispatchApp {
+  /**
+   * The entry point of the program.
+   */
+  public static void main(String[] args) {
+    TrainDispatchApp app = new TrainDispatchApp();
+    app.init();
+    app.start();
+  }
+
   private static final Command[] COMMANDS = {
       new RenderDeparturesCommand(),
       new AddDepartureCommand(),
@@ -32,14 +41,6 @@ public class TrainDispatchApp {
         );
   }
 
-  /**
-   * The entry point of the program.
-   */
-  public static void main(String[] args) {
-    TrainDispatchApp app = new TrainDispatchApp();
-    app.init();
-    app.start();
-  }
 
   private void init() {
     System.out.println("Starting train dispatch application...");
@@ -48,6 +49,8 @@ public class TrainDispatchApp {
   }
 
   private void start() {
+    // Exit command handles exiting
+    // noinspection InfiniteLoopStatement
     while (true) {
       System.out.println("============================");
       System.out.println("Enter a command:");
@@ -64,10 +67,11 @@ public class TrainDispatchApp {
   }
 
   /**
-   * Adds a new train departure to the list of departures.
+   * Safely adds a new train departure to the list of departures.
    *
    * @param departure The departure to add
-   * @throws IllegalArgumentException If the train number is not unique
+   * @throws IllegalArgumentException If the train number is not unique, producing an illegal
+   *                                  application state.
    */
   public void addDeparture(TrainDeparture departure) throws IllegalStateException {
     // Check that the train number is unique
@@ -80,6 +84,11 @@ public class TrainDispatchApp {
     departures.add(departure);
   }
 
+  /**
+   * Gets the list of departures.
+   *
+   * @return The list of departures
+   */
   public List<TrainDeparture> getDepartures() {
     return departures;
   }
@@ -92,7 +101,7 @@ public class TrainDispatchApp {
             10,
             30,
             "L4",
-            200,
+            1,
             "Bergen",
             1,
             10
@@ -101,7 +110,7 @@ public class TrainDispatchApp {
             10,
             35,
             "R3",
-            300,
+            2,
             "Trondheim",
             2,
             5
@@ -110,7 +119,7 @@ public class TrainDispatchApp {
             10,
             40,
             "L4",
-            100,
+            3,
             "Stavanger",
             1,
             0
@@ -119,7 +128,7 @@ public class TrainDispatchApp {
             10,
             45,
             "R3",
-            150,
+            4,
             "Oslo",
             2,
             0
