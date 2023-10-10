@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Provides full 100% test coverage for the {@link TrainDeparture} class.
  */
-public final class TestTrainDeparture {
+public final class TrainDepartureTest {
   // region Constructor
 
   /**
@@ -436,7 +436,7 @@ public final class TestTrainDeparture {
         10
     );
 
-    assertEquals(departure.getTrackDelayInfo(), "|1| n.200 10 min delay");
+    assertEquals(departure.getTrackDelayInfo(), "|1| n.200 10m");
 
     // Another example
     departure = new TrainDeparture(
@@ -449,7 +449,7 @@ public final class TestTrainDeparture {
         5
     );
 
-    assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5 min delay");
+    assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5m");
   }
 
   @Test
@@ -464,7 +464,7 @@ public final class TestTrainDeparture {
         10
     );
 
-    assertEquals("10:40 L4-Bergen |1| n.200 10 min delay", departure.toFormattedString(15, 21));
+    assertEquals("10:40 L4-Bergen |1| n.200 10m         ", departure.toFormattedString(15, 21));
 
     // Another example
     departure = new TrainDeparture(
@@ -477,7 +477,7 @@ public final class TestTrainDeparture {
         5
     );
 
-    assertEquals("10:40 R3-Trondheim   |2| n.300 5 min delay  ", departure.toFormattedString(20,
+    assertEquals("10:40 R3-Trondheim   |2| n.300 5m           ", departure.toFormattedString(20,
         22));
   }
 
