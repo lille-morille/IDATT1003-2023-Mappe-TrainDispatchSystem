@@ -9,9 +9,14 @@ class DurationRendererTest {
 
   @Test
   void render() {
-    assertEquals("30m", DurationRenderer.render(Duration.ofMinutes(30)));
-    assertEquals("1h 30m", DurationRenderer.render(Duration.ofMinutes(90)));
-    assertEquals("2h 30m", DurationRenderer.render(Duration.ofMinutes(150)));
-    assertEquals("", DurationRenderer.render(Duration.ofMinutes(0)));
+    assertEquals("30m", DurationRenderer.render(Duration.ofMinutes(30), false));
+    assertEquals("1h 30m", DurationRenderer.render(Duration.ofMinutes(90), false));
+    assertEquals("2h 30m", DurationRenderer.render(Duration.ofMinutes(150), false));
+    assertEquals("", DurationRenderer.render(Duration.ofMinutes(0), false));
+
+    assertEquals("30m delay", DurationRenderer.render(Duration.ofMinutes(30), true));
+    assertEquals("1h 30m delay", DurationRenderer.render(Duration.ofMinutes(90), true));
+    assertEquals("2h 30m delay", DurationRenderer.render(Duration.ofMinutes(150), true));
+    assertEquals("", DurationRenderer.render(Duration.ofMinutes(0), true));
   }
 }
