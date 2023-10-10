@@ -11,7 +11,7 @@ public final class DurationRenderer {
    * If there is no duration, an empty string is returned.
    *
    * @param duration            the duration to render
-   * @param includeDelayPostfix
+   * @param includeDelayPostfix whether to include the postfix " delay" after the duration
    * @return the rendered duration
    */
   public static String render(Duration duration, boolean includeDelayPostfix) {

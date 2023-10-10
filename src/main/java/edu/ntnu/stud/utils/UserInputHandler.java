@@ -75,6 +75,11 @@ public final class UserInputHandler {
     return track;
   }
 
+  /**
+   * Asks the user for a destination and returns it.
+   *
+   * @return The destination.
+   */
   public String getDestination() {
     String destination = "";
     while (true) {
@@ -95,6 +100,11 @@ public final class UserInputHandler {
     return destination;
   }
 
+  /**
+   * Asks the user for a line and returns it.
+   *
+   * @return The line.
+   */
   public String getLine() {
     System.out.println("Enter line: ");
     String line;

@@ -3,6 +3,9 @@ package edu.ntnu.stud.commands;
 import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.utils.UserInputHandler;
 
+/**
+ * Command for finding train departures by destination.
+ */
 public class FindByDestinationCommand extends Command {
   public FindByDestinationCommand() {
     super("find by dest", "Find train departures by destination");
