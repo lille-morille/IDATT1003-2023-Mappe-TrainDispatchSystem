@@ -1,10 +1,7 @@
 package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
-import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.utils.UserInputHandler;
-import java.time.Duration;
-import java.util.Scanner;
 
 /**
  * Sets the delay to a train departure.

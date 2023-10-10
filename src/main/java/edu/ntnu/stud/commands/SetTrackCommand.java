@@ -1,7 +1,6 @@
 package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
-import edu.ntnu.stud.models.TrainDeparture;
 import edu.ntnu.stud.utils.UserInputHandler;
 
 /**
