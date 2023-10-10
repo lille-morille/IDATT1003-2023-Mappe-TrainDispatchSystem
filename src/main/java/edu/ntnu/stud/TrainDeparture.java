@@ -57,7 +57,7 @@ public class TrainDeparture {
     assert !line.isEmpty() : "Line cannot be empty";
     assert trainNumber > 0 : "Train number must be positive";
     assert !destination.isEmpty() : "Destination cannot be empty";
-    assert track > 0 : "Track must be positive";
+    assert track == -1 || track > 0 : "Track must be -1 or positive";
   }
 
   /**

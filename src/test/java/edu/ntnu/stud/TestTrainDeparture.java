@@ -158,17 +158,63 @@ public final class TestTrainDeparture {
   }
 
   @Test
-  public void testTrackIsPositive() {
-    Throwable negativeException = assertThrows(AssertionError.class, () -> new TrainDeparture(
+  public void testTrackInBounds() {
+    // Throws on -2, out of bounds -1 || >0
+    Throwable exception1 = assertThrows(AssertionError.class, () -> new TrainDeparture(
         10,
         30,
         "L4",
         200,
         "Bergen",
-        -4,
+        -2,
         10
     ));
-    assertEquals(negativeException.getMessage(), "Track must be positive");
+    assertEquals(exception1.getMessage(), "Track must be -1 or positive");
+
+    // Throws on 0
+    Throwable exception2 = assertThrows(AssertionError.class, () -> new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        0,
+        10
+    ));
+    assertEquals(exception2.getMessage(), "Track must be -1 or positive");
+
+    // Passes on -1
+    new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        -1,
+        10
+    );
+
+    // Passes on 1
+    new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        1,
+        10
+    );
+
+    // Passes on 2
+    new TrainDeparture(
+        10,
+        30,
+        "L4",
+        200,
+        "Bergen",
+        2,
+        10
+    );
   }
   // endregion
 
