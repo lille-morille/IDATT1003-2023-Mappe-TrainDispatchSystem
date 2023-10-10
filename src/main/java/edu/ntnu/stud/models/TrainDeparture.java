@@ -1,5 +1,6 @@
 package edu.ntnu.stud.models;
 
+import edu.ntnu.stud.utils.Colors;
 import edu.ntnu.stud.utils.DurationRenderer;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -143,6 +144,15 @@ public class TrainDeparture {
   }
 
   /**
+   * Returns whether the train is delayed or not.
+   *
+   * @return True if the train is delayed, false otherwise
+   */
+  public boolean isDelayed() {
+    return !delay.isZero();
+  }
+
+  /**
    * Update the delay time.
    *
    * @param delay New delay time to set
@@ -162,6 +172,18 @@ public class TrainDeparture {
   }
 
   /**
+   * Returns the first pieces of information to display in the departure table, with color.
+   */
+  public String getCoreInfoWithColor() {
+    var lineColor = Colors.getForLine(getLine(), false);
+    var lineColorBold = Colors.getForLine(getLine(), true);
+    return String.format("%s %s-%s",
+        (isDelayed() ? Colors.YELLOW : "") + getFinalDepartureTime().toString(),
+        lineColorBold + getLine(),
+        Colors.RESET + lineColor + getDestination()) + Colors.RESET;
+  }
+
+  /**
    * Returns the second pieces of information to display in the departure table.
    */
   public String getTrackDelayInfo() {
@@ -169,6 +191,17 @@ public class TrainDeparture {
         getTrack(),
         getTrainNumber(),
         DurationRenderer.render(getDelay(), true));
+  }
+
+  /**
+   * Returns the second pieces of information to display in the departure table, with color.
+   */
+  public String getTrackDelayInfoWithColor() {
+    return String.format("%s n.%s %s",
+        getTrack() == -1 ? "| |" : "|" + getTrack() + "|",
+        getTrainNumber(),
+        (isDelayed() ? Colors.YELLOW : "") + DurationRenderer.render(getDelay(), true))
+        + Colors.RESET;
   }
 
   /**
@@ -181,9 +214,9 @@ public class TrainDeparture {
    */
   public String toFormattedString(int maxCoreLength, int maxTrackDelayLength) {
     return String.format("%s%s%s%s",
-        getCoreInfo(),
+        getCoreInfoWithColor(),
         " ".repeat(maxCoreLength - getCoreInfo().length() + 1),
-        getTrackDelayInfo(),
+        getTrackDelayInfoWithColor(),
         " ".repeat(maxTrackDelayLength - getTrackDelayInfo().length() + 1));
   }
 
@@ -193,7 +226,7 @@ public class TrainDeparture {
     String str = String.format(
         "Train %s %s-%s departs at %s from track %d",
         getTrainNumber(),
-        getLine(),
+        Colors.getForLine(getLine(), true) + getLine() + Colors.RESET,
         getDestination(),
         getFinalDepartureTime(),
         getTrack());

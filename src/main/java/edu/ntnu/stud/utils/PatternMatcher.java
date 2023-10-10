@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  */
 public final class PatternMatcher {
   static String timeRegex = "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"; // matches hh:mm
-  static String lineRegex = "^(L|F|R|RE)\\d{1,2}$"; // matches L1, F12, RE21 etc.
+  static String lineRegex = "^(L|F|R|RE|FLY)\\d{1,2}$"; // matches L1, F12, RE21 etc.
 
   /**
    * Match a time string in the format hh:mm.

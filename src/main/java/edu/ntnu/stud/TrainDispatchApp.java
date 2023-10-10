@@ -4,8 +4,8 @@ import edu.ntnu.stud.commands.AddCommand;
 import edu.ntnu.stud.commands.Command;
 import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.FindByDestinationCommand;
-import edu.ntnu.stud.commands.PrintDeparturesCommand;
 import edu.ntnu.stud.commands.FindByTrainNumberCommand;
+import edu.ntnu.stud.commands.PrintDeparturesCommand;
 import edu.ntnu.stud.commands.SetClockCommand;
 import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.SetTrackCommand;
@@ -73,7 +73,7 @@ public class TrainDispatchApp {
       System.out.println("Enter a command (name or number):");
       for (int i = 0; i < COMMANDS.length; i++) {
         Command command = COMMANDS[i];
-        System.out.printf("(%d) %s - %s%n", i + 1, command.getName(), command.getDescription());
+        System.out.printf("[%d] %s - %s%n", i + 1, command.getName(), command.getDescription());
       }
       System.out.println();
       System.out.print("> ");
@@ -148,11 +148,12 @@ public class TrainDispatchApp {
    * Also removes departures that have already departed.
    */
   public void setClock(LocalTime clock) {
-    // Add 1 second for departures with the same time to be removed
-    this.clock = clock.plusSeconds(1);
+    this.clock = clock;
 
     // Remove departures before this time
-    departures.removeIf(d -> d.getFinalDepartureTime().isBefore(clock));
+    // We use !isAfter because we want to remove departures that are exactly on time
+    // isBefore checks for strictly before, not equal
+    departures.removeIf(d -> !d.getFinalDepartureTime().isAfter(clock));
   }
 
   private List<TrainDeparture> getSampleDepartures() {
@@ -160,7 +161,7 @@ public class TrainDispatchApp {
         new TrainDeparture(
             10,
             30,
-            "L4",
+            "F1",
             1,
             "Bergen",
             1,
@@ -169,7 +170,7 @@ public class TrainDispatchApp {
         new TrainDeparture(
             10,
             35,
-            "R3",
+            "RE2",
             2,
             "Trondheim",
             2,
@@ -178,7 +179,7 @@ public class TrainDispatchApp {
         new TrainDeparture(
             10,
             40,
-            "L4",
+            "R2",
             3,
             "Stavanger",
             1,
@@ -187,7 +188,7 @@ public class TrainDispatchApp {
         new TrainDeparture(
             10,
             45,
-            "R3",
+            "FLY1",
             4,
             "Oslo",
             2,
