@@ -13,6 +13,7 @@ public final class PrintDeparturesCommand extends Command {
 
   @Override
   public void execute(TrainDispatchApp app) {
+    System.out.println("Clock: " + app.getClock().toString());
     TrainDepartureRenderer.renderDepartures(app.getDepartures());
   }
 }
