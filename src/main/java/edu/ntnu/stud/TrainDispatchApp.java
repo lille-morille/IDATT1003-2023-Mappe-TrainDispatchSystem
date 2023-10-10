@@ -102,6 +102,17 @@ public class TrainDispatchApp {
   }
 
   /**
+   * Gets a list of departures by destination.
+   *
+   * @param destination The destination to query by.
+   * @return The list of departures. ! May be empty !
+   */
+  public List<TrainDeparture> getDeparturesByDestination(String destination) {
+    return getDepartures().stream()
+        .filter(d -> d.getDestination().equals(destination)).toList();
+  }
+
+  /**
    * Gets the list of departures.
    *
    * @return The list of departures
