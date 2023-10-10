@@ -87,6 +87,19 @@ public class TrainDispatchApp {
   }
 
   /**
+   * Gets a departure by train number.
+   *
+   * @param trainNumber The train number to query by.
+   * @return The departure, or null if not found.
+   */
+  public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
+    return getDepartures().stream()
+        .filter(d -> d.getTrainNumber() == trainNumber)
+        .findFirst()
+        .orElse(null);
+  }
+
+  /**
    * Gets the list of departures.
    *
    * @return The list of departures
