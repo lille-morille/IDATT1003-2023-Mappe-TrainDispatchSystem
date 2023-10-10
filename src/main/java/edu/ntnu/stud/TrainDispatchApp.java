@@ -5,7 +5,7 @@ import edu.ntnu.stud.commands.Command;
 import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.FindByDestinationCommand;
 import edu.ntnu.stud.commands.PrintDeparturesCommand;
-import edu.ntnu.stud.commands.FindByTrainNumber;
+import edu.ntnu.stud.commands.FindByTrainNumberCommand;
 import edu.ntnu.stud.commands.SetClockCommand;
 import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.SetTrackCommand;
@@ -34,7 +34,7 @@ public class TrainDispatchApp {
       new AddCommand(),
       new SetDelayCommand(),
       new SetTrackCommand(),
-      new FindByTrainNumber(),
+      new FindByTrainNumberCommand(),
       new FindByDestinationCommand(),
       new SetClockCommand(),
       new ExitCommand(),
