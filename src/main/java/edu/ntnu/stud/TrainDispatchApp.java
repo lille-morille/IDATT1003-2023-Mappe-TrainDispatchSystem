@@ -1,12 +1,37 @@
 package edu.ntnu.stud;
 
+import edu.ntnu.stud.commands.SetDelayCommand;
+import edu.ntnu.stud.commands.AddDepartureCommand;
+import edu.ntnu.stud.commands.Command;
+import edu.ntnu.stud.commands.ExitCommand;
+import edu.ntnu.stud.commands.RenderDeparturesCommand;
 import edu.ntnu.stud.models.TrainDeparture;
-import edu.ntnu.stud.services.TrainDepartureRenderer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * This is the main class for the train dispatch application.
  */
 public class TrainDispatchApp {
+  private static final Command[] COMMANDS = {
+      new RenderDeparturesCommand(),
+      new AddDepartureCommand(),
+      new SetDelayCommand(),
+      new ExitCommand(),
+  };
+
+  private void runCommand(String command) {
+    Arrays.stream(COMMANDS)
+        .filter(c -> c.getName().equals(command))
+        .findFirst()
+        .ifPresentOrElse(
+            c -> c.execute(this),
+            () -> System.out.println("Unknown command: " + command)
+        );
+  }
+
   /**
    * The entry point of the program.
    */
@@ -16,16 +41,53 @@ public class TrainDispatchApp {
     app.start();
   }
 
-  public void init() {
+  private void init() {
     System.out.println("Starting train dispatch application...");
+    // TODO remove sample data for production
+    departures.addAll(getSampleDepartures());
   }
 
-  public void start() {
-    TrainDepartureRenderer.renderDepartures(getDepartures());
+  private void start() {
+    while (true) {
+      System.out.println("============================");
+      System.out.println("Enter a command:");
+      for (Command command : COMMANDS) {
+        System.out.println(command.getName() + " - " + command.getDescription());
+      }
+      System.out.println();
+      System.out.print("> ");
+      Scanner scanner = new Scanner(System.in);
+      String command = scanner.nextLine();
+      runCommand(command);
+      System.out.println();
+    }
   }
 
-  private TrainDeparture[] getDepartures() {
-    return new TrainDeparture[] {
+  /**
+   * Adds a new train departure to the list of departures.
+   *
+   * @param departure The departure to add
+   * @throws IllegalArgumentException If the train number is not unique
+   */
+  public void addDeparture(TrainDeparture departure) throws IllegalStateException {
+    // Check that the train number is unique
+    for (TrainDeparture d : departures) {
+      if (d.getTrainNumber() == departure.getTrainNumber()) {
+        throw new IllegalStateException("Train number must be unique");
+      }
+    }
+
+    departures.add(departure);
+  }
+
+  public List<TrainDeparture> getDepartures() {
+    return departures;
+  }
+
+  private final List<TrainDeparture> departures = new ArrayList<>();
+
+  private List<TrainDeparture> getSampleDepartures() {
+    return Arrays.stream(new TrainDeparture[] {
         new TrainDeparture(
             10,
             30,
@@ -39,7 +101,7 @@ public class TrainDispatchApp {
             10,
             35,
             "R3",
-            200,
+            300,
             "Trondheim",
             2,
             5
@@ -48,7 +110,7 @@ public class TrainDispatchApp {
             10,
             40,
             "L4",
-            200,
+            100,
             "Stavanger",
             1,
             0
@@ -57,11 +119,11 @@ public class TrainDispatchApp {
             10,
             45,
             "R3",
-            200,
+            150,
             "Oslo",
             2,
             0
         ),
-    };
+    }).toList();
   }
 }
