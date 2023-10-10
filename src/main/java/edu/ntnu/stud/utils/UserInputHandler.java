@@ -215,6 +215,8 @@ public final class UserInputHandler {
       break;
     }
 
+    // Overflows to next line, so we need to consume it
+    in.nextLine();
     return trainNumber;
   }
 }
