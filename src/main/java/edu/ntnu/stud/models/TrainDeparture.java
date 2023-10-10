@@ -168,7 +168,7 @@ public class TrainDeparture {
     return String.format("|%d| n.%s %s",
         getTrack(),
         getTrainNumber(),
-        DurationRenderer.render(getDelay()));
+        DurationRenderer.render(getDelay(), true));
   }
 
   /**
@@ -189,7 +189,7 @@ public class TrainDeparture {
 
   @Override
   public String toString() {
-    String delayString = DurationRenderer.render(getDelay());
+    String delayString = DurationRenderer.render(getDelay(), false);
     String str = String.format(
         "Train %s %s-%s departs at %s from track %d",
         getTrainNumber(),
