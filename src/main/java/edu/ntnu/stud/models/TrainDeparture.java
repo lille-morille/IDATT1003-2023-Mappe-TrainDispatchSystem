@@ -43,6 +43,29 @@ public class TrainDeparture {
   }
 
   /**
+   * Creates a new train departure from primitive and compound type fields.
+   *
+   * @param departureTime The departure time
+   * @param line          The line number
+   * @param trainNumber   The train number
+   * @param destination   The destination
+   * @param track         The track
+   * @param delay         The delay
+   */
+  public TrainDeparture(LocalTime departureTime, String line, int trainNumber,
+                        String destination, int track, Duration delay) {
+    validateParams(departureTime.getHour(), departureTime.getMinute(), line, trainNumber,
+        destination, track, (int) delay.toMinutes());
+
+    this.departureTime = departureTime;
+    this.line = line;
+    this.trainNumber = trainNumber;
+    this.destination = destination;
+    this.track = track;
+    this.delay = delay;
+  }
+
+  /**
    * Validates that all parameters passed into the constructor are valid.
    */
   private static void validateParams(int departureHours, int departureMinutes, String line,
