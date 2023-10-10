@@ -10,12 +10,12 @@ import java.util.Scanner;
  */
 public final class SetDelayCommand extends Command {
   public SetDelayCommand() {
-    super("set-delay", "Sets the delay to a train departure");
+    super("set delay", "Sets the delay to a train departure");
   }
 
   @Override
   public void execute(TrainDispatchApp app) {
-    new RenderDeparturesCommand().execute(app);
+    new PrintDeparturesCommand().execute(app);
 
     System.out.println("Add delay to a train departure");
     final var in = new Scanner(System.in);

@@ -155,6 +155,6 @@ public final class AddDepartureCommand extends Command {
             track, delayMinues));
 
     // Display the departures after inserting
-    new RenderDeparturesCommand().execute(app);
+    new PrintDeparturesCommand().execute(app);
   }
 }
