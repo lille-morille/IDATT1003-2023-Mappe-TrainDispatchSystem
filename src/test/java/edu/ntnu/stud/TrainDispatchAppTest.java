@@ -1,6 +1,6 @@
 package edu.ntnu.stud;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.ntnu.stud.models.TrainDeparture;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ class TrainDispatchAppTest {
         4,
         10
     ));
-   
+
     assertEquals(1, app.getDepartures().size());
   }
 }

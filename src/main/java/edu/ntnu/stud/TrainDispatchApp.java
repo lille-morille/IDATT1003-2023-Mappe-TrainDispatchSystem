@@ -1,10 +1,10 @@
 package edu.ntnu.stud;
 
-import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.AddDepartureCommand;
 import edu.ntnu.stud.commands.Command;
 import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.RenderDeparturesCommand;
+import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.models.TrainDeparture;
 import java.util.ArrayList;
 import java.util.Arrays;
