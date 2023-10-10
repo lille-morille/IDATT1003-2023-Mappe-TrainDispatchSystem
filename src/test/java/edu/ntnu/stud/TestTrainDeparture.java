@@ -3,6 +3,7 @@ package edu.ntnu.stud;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import edu.ntnu.stud.models.TrainDeparture;
 import java.time.Duration;
 import org.junit.jupiter.api.Test;
 

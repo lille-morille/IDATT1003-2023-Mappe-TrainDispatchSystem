@@ -1,5 +1,8 @@
 package edu.ntnu.stud;
 
+import edu.ntnu.stud.models.TrainDeparture;
+import edu.ntnu.stud.services.TrainDepartureRenderer;
+
 /**
  * This is the main class for the train dispatch application.
  */

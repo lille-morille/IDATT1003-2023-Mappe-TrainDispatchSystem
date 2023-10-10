@@ -1,4 +1,4 @@
-package edu.ntnu.stud;
+package edu.ntnu.stud.models;
 
 import java.time.Duration;
 import java.time.LocalTime;

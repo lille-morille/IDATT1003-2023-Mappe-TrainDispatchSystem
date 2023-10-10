@@ -1,4 +1,6 @@
-package edu.ntnu.stud;
+package edu.ntnu.stud.services;
+
+import edu.ntnu.stud.models.TrainDeparture;
 
 /**
  * Handles rendering Train Departures into a nice table format.
