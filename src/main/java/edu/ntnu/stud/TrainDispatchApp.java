@@ -1,6 +1,6 @@
 package edu.ntnu.stud;
 
-import edu.ntnu.stud.commands.AddDepartureCommand;
+import edu.ntnu.stud.commands.AddCommand;
 import edu.ntnu.stud.commands.Command;
 import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.PrintDeparturesCommand;
@@ -28,7 +28,7 @@ public class TrainDispatchApp {
 
   private static final Command[] COMMANDS = {
       new PrintDeparturesCommand(),
-      new AddDepartureCommand(),
+      new AddCommand(),
       new SetDelayCommand(),
       new SetTrackCommand(),
       new SearchCommand(),

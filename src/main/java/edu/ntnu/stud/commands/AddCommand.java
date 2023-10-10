@@ -7,8 +7,8 @@ import edu.ntnu.stud.utils.UserInputHandler;
 /**
  * Adds a train departure to the list of departures.
  */
-public final class AddDepartureCommand extends Command {
-  public AddDepartureCommand() {
+public final class AddCommand extends Command {
+  public AddCommand() {
     super("add", "Add a train departure");
   }
 
