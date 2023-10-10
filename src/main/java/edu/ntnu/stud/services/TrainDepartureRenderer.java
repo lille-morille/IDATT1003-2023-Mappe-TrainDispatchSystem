@@ -1,6 +1,7 @@
 package edu.ntnu.stud.services;
 
 import edu.ntnu.stud.models.TrainDeparture;
+import java.util.List;
 
 /**
  * Handles rendering Train Departures into a nice table format.
@@ -17,7 +18,12 @@ public class TrainDepartureRenderer {
    * Renders a set of train departures into a nice table format in the terminal.
    * Uses System.out.println to write to the terminal.
    */
-  public static void renderDepartures(TrainDeparture[] departures) {
+  public static void renderDepartures(List<TrainDeparture> departures) {
+    if (departures.isEmpty()) {
+      System.out.println("No departures to render.");
+      return;
+    }
+
     MaxLengths maxLengths = getMaxLengths(departures);
 
     System.out.println(getVerticalHeaderBorder(maxLengths));
@@ -47,7 +53,7 @@ public class TrainDepartureRenderer {
    * Computes the max lengths for each part in the table.
    * This allows us to align the track number and end borders evenly.
    */
-  private static MaxLengths getMaxLengths(TrainDeparture[] departures) {
+  private static MaxLengths getMaxLengths(List<TrainDeparture> departures) {
     // Find the longest core info and track delay info
     // So we can align everything nicely in columns
     int maxCoreLength = 0;
@@ -88,9 +94,13 @@ public class TrainDepartureRenderer {
     // should look like this: ===time===line===destination===|track|train|delay===
     final var base = "time==line|dest";
     var str = "===" + base;
-    str += new String(new char[maxLengths.maxCoreLength() - base.length() + 1]).replace("\0", "=");
+    str +=
+        new String(new char[Math.max(maxLengths.maxCoreLength() - base.length() + 1, 0)]).replace(
+            "\0",
+            "=");
     str += "track|train|delay";
-    str += new String(new char[maxLengths.maxTrackDelayLength() - "track|train|delay".length() + 3])
+    str += new String(
+        new char[Math.max(maxLengths.maxTrackDelayLength() - "track|train|delay".length() + 3, 0)])
         .replace("\0", "=");
     return str;
   }
