@@ -1,4 +1,4 @@
-package edu.ntnu.stud.services;
+package edu.ntnu.stud.utils;
 
 import edu.ntnu.stud.models.TrainDeparture;
 import java.util.List;
