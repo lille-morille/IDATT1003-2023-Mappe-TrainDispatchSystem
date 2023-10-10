@@ -13,7 +13,6 @@ public final class PrintDeparturesCommand extends Command {
 
   @Override
   public void execute(TrainDispatchApp app) {
-    System.out.println("Rendering departures table ...");
     TrainDepartureRenderer.renderDepartures(app.getDepartures());
   }
 }
