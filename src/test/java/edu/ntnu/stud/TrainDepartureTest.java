@@ -393,7 +393,7 @@ public final class TrainDepartureTest {
         10
     );
     assertEquals(departure.toString(),
-        "10:40 L4-Bergen |1| train-200 10 min delay");
+        "Train 200 \u001B[1;32mL4\u001B[0m-Bergen departs at 10:40 from track 1 with a delay of 10m");
   }
 
   @Test
@@ -436,7 +436,7 @@ public final class TrainDepartureTest {
         10
     );
 
-    assertEquals(departure.getTrackDelayInfo(), "|1| n.200 10m");
+    assertEquals(departure.getTrackDelayInfo(), "|1| n.200 10m delay");
 
     // Another example
     departure = new TrainDeparture(
@@ -449,7 +449,7 @@ public final class TrainDepartureTest {
         5
     );
 
-    assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5m");
+    assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5m delay");
   }
 
   @Test
@@ -464,7 +464,10 @@ public final class TrainDepartureTest {
         10
     );
 
-    assertEquals("10:40 L4-Bergen |1| n.200 10m         ", departure.toFormattedString(15, 21));
+    assertEquals(
+        "[33m10:40 \u001B[1;32mL4-\u001B[0m\u001B[32mBergen\u001B[0m |1| n.200 \u001B[33m10m " +
+            "delay\u001B[0m   ",
+        departure.toFormattedString(15, 21));
 
     // Another example
     departure = new TrainDeparture(

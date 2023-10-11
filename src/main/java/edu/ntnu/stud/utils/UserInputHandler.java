@@ -152,8 +152,9 @@ public final class UserInputHandler {
         continue;
       }
 
-      hour = Integer.parseInt(departureTime.split(":")[0]);
-      minute = Integer.parseInt(departureTime.split(":")[1]);
+      String[] parts = departureTime.split(":");
+      hour = Integer.parseInt(parts[0]);
+      minute = Integer.parseInt(parts[1]);
       break;
     }
 
