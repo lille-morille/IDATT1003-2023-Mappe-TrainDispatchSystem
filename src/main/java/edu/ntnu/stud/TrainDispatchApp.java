@@ -54,6 +54,9 @@ public class TrainDispatchApp {
               c -> c.execute(this),
               () -> System.out.println("Unknown command: " + command)
           );
+    } catch (IndexOutOfBoundsException e) {
+      System.out.printf("Please specify a command in the range 1-%d,%nor the command name",
+          COMMANDS.length);
     }
   }
 
