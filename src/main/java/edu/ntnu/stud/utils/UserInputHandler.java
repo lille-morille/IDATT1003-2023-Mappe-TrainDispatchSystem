@@ -198,9 +198,16 @@ public final class UserInputHandler {
     int trainNumber;
 
     while (true) {
-      System.out.println("Enter train number (positive integer): ");
+      System.out.println(
+          "Enter train number (positive integer), or leave it blank to generate automatically: "
+      );
       try {
-        trainNumber = in.nextInt();
+        var tempTrainNumber = in.nextLine();
+        if (tempTrainNumber.isBlank()) {
+          trainNumber = app.generateTrainNumber();
+        } else {
+          trainNumber = Integer.parseInt(tempTrainNumber);
+        }
       } catch (Exception e) {
         System.out.println("Invalid train number, please try again.");
         continue;
