@@ -199,4 +199,17 @@ public class TrainDispatchApp {
         ),
     }).toList();
   }
+
+  /**
+   * Generates a train number that is unique ; not already in use.
+   */
+  public int generateTrainNumber() {
+    int trainNumber = 1;
+    while (true) {
+      if (getDepartureByTrainNumber(trainNumber) == null) {
+        return trainNumber;
+      }
+      trainNumber++;
+    }
+  }
 }
