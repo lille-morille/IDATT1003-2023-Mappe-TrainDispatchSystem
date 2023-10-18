@@ -13,6 +13,7 @@ import edu.ntnu.stud.models.TrainDeparture;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,6 +104,10 @@ public class TrainDispatchApp {
     }
 
     departures.add(departure);
+
+    // Sort the list by departure time, then by track number
+    departures.sort(Comparator.comparing(TrainDeparture::getFinalDepartureTime)
+        .thenComparingInt(TrainDeparture::getTrack));
   }
 
   /**
@@ -130,11 +135,13 @@ public class TrainDispatchApp {
   }
 
   /**
-   * Gets the list of departures.
+   * Gets the list of departures in correct order.
+   * The list is sorted by departure time, then by track number.
    *
    * @return The list of departures
    */
   public List<TrainDeparture> getDepartures() {
+    // Sort by departure time, then by track number
     return departures;
   }
 
