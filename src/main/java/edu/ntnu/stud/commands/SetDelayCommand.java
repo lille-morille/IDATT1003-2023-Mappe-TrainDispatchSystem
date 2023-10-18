@@ -23,5 +23,9 @@ public final class SetDelayCommand extends Command {
     var delay = input.getDelay();
 
     departure.setDelay(delay);
+
+    System.out.println("Delay added successfully!");
+    System.out.println();
+    new PrintDeparturesCommand().execute(app);
   }
 }

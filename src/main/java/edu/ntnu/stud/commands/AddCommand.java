@@ -24,10 +24,13 @@ public final class AddCommand extends Command {
     var track = input.getTrack();
     var delay = input.getDelay();
 
-    System.out.println("Train departure added successfully!");
     app.addDeparture(
         new TrainDeparture(departureTime, line, trainNumber, destination,
             track, delay));
+    System.out.println("Train departure added successfully!");
+
+    // Insert space before printing table
+    System.out.println();
 
     // Display the departures after inserting
     new PrintDeparturesCommand().execute(app);

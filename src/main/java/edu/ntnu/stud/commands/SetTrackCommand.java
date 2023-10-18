@@ -21,5 +21,8 @@ public class SetTrackCommand extends Command {
     var track = input.getTrack();
 
     departure.setTrack(track);
+    System.out.println("Track set successfully!");
+    System.out.println();
+    new PrintDeparturesCommand().execute(app);
   }
 }

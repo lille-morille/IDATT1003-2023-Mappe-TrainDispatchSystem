@@ -19,5 +19,8 @@ public class SetClockCommand extends Command {
     var time = input.getTime();
 
     app.setClock(time);
+
+    System.out.println();
+    new PrintDeparturesCommand().execute(app);
   }
 }
