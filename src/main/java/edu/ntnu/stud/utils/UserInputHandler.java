@@ -37,12 +37,14 @@ public final class UserInputHandler {
         continue;
       }
 
-      departure = app.getDepartureByTrainNumber(trainNumber);
+      var maybeDeparture = app.getDepartureByTrainNumber(trainNumber);
 
-      if (departure == null) {
+      if (maybeDeparture.isEmpty()) {
         System.out.println("No train found with this train number. Please try again.");
         continue;
       }
+
+      departure = maybeDeparture.get();
 
       break;
     }

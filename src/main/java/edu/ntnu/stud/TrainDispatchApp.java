@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -114,13 +115,12 @@ public class TrainDispatchApp {
    * Gets a departure by train number.
    *
    * @param trainNumber The train number to query by.
-   * @return The departure, or null if not found.
+   * @return The departure with the given train number, or null if not found.
    */
-  public TrainDeparture getDepartureByTrainNumber(int trainNumber) {
+  public Optional<TrainDeparture> getDepartureByTrainNumber(int trainNumber) {
     return getDepartures().stream()
         .filter(d -> d.getTrainNumber() == trainNumber)
-        .findFirst()
-        .orElse(null);
+        .findFirst();
   }
 
   /**
