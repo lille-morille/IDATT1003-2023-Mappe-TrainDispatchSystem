@@ -97,7 +97,7 @@ public class TrainDispatchApp {
     }
   }
 
-  private ArrayList<TrainDeparture> departures;
+  private final ArrayList<TrainDeparture> departures;
 
   /**
    * Safely adds a new train departure to the list of departures.

@@ -1,7 +1,5 @@
 package edu.ntnu.stud.input;
 
-import com.sun.source.tree.NewArrayTree;
-
 class InvalidInputException extends Exception {
   public static final String DEFAULT_MESSAGE = "Invalid input, please try again.";
   public static final String INVALID_FORMAT_MESSAGE = "Invalid format, please try again.";

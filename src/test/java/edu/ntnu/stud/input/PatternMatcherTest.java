@@ -1,11 +1,8 @@
 package edu.ntnu.stud.input;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import edu.ntnu.stud.input.PatternMatcher;
 import org.junit.jupiter.api.Test;
 
 class PatternMatcherTest {
