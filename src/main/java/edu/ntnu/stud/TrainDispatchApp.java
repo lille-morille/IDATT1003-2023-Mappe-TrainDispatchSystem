@@ -22,15 +22,19 @@ import java.util.Scanner;
  * This is the main class for the train dispatch application.
  */
 public class TrainDispatchApp {
+
   /**
    * The entry point of the program.
    */
   public static void main(String[] args) {
-    TrainDispatchApp app = new TrainDispatchApp();
+    var app = new TrainDispatchApp();
     app.init();
     app.start();
   }
 
+  /**
+   * The list of commands available in the application.
+   */
   private static final Command[] COMMANDS = {
       new PrintDeparturesCommand(),
       new AddCommand(),
@@ -46,6 +50,7 @@ public class TrainDispatchApp {
     try {
       // Try to parse the command as a number
       int commandIndex = Integer.parseInt(command) - 1;
+
       COMMANDS[commandIndex].execute(this);
     } catch (NumberFormatException ignored) {
       // If that did not work, try the command name instead
@@ -53,11 +58,11 @@ public class TrainDispatchApp {
           .filter(c -> c.getName().equals(command))
           .findFirst()
           .ifPresentOrElse(
-              c -> c.execute(this),
-              () -> System.out.println("Unknown command: " + command)
+              (c) -> c.execute(this),
+              () -> System.out.printf("Unknown command: %s, please try again.%n", command)
           );
     } catch (IndexOutOfBoundsException e) {
-      System.out.printf("Please specify a command in the range 1-%d,%nor the command name",
+      System.out.printf("Please specify a command in the range 1-%d, or the command name.",
           COMMANDS.length);
     }
   }
@@ -65,9 +70,11 @@ public class TrainDispatchApp {
 
   private void init() {
     System.out.println("Starting train dispatch application...");
+    departures = new ArrayList<>();
+    clock = LocalTime.of(0, 0);
+
     // TODO remove sample data for production
     departures.addAll(getSampleDepartures());
-    this.clock = LocalTime.of(0, 0);
   }
 
   private void start() {
@@ -89,6 +96,8 @@ public class TrainDispatchApp {
     }
   }
 
+  private ArrayList<TrainDeparture> departures;
+
   /**
    * Safely adds a new train departure to the list of departures.
    *
@@ -105,10 +114,18 @@ public class TrainDispatchApp {
     }
 
     departures.add(departure);
+  }
 
-    // Sort the list by departure time, then by track number
+  /**
+   * Gets the list of departures in correct order.
+   * The list is sorted by departure time, then by track number.
+   *
+   * @return The list of departures
+   */
+  public List<TrainDeparture> getDepartures() {
     departures.sort(Comparator.comparing(TrainDeparture::getFinalDepartureTime)
         .thenComparingInt(TrainDeparture::getTrack));
+    return departures;
   }
 
   /**
@@ -133,19 +150,6 @@ public class TrainDispatchApp {
     return getDepartures().stream()
         .filter(d -> d.getDestination().equals(destination)).toList();
   }
-
-  /**
-   * Gets the list of departures in correct order.
-   * The list is sorted by departure time, then by track number.
-   *
-   * @return The list of departures
-   */
-  public List<TrainDeparture> getDepartures() {
-    // Sort by departure time, then by track number
-    return departures;
-  }
-
-  private final List<TrainDeparture> departures = new ArrayList<>();
 
   private LocalTime clock;
 
