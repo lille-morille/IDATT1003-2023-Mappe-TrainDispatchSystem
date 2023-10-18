@@ -22,6 +22,10 @@ import java.util.Scanner;
  * This is the main class for the train dispatch application.
  */
 public class TrainDispatchApp {
+  public TrainDispatchApp() {
+    departures = new ArrayList<>();
+    clock = LocalTime.of(0, 0);
+  }
 
   /**
    * The entry point of the program.
@@ -70,9 +74,6 @@ public class TrainDispatchApp {
 
   private void init() {
     System.out.println("Starting train dispatch application...");
-    departures = new ArrayList<>();
-    clock = LocalTime.of(0, 0);
-
     // TODO remove sample data for production
     departures.addAll(getSampleDepartures());
   }

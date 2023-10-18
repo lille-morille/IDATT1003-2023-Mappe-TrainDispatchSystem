@@ -2,7 +2,7 @@ package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDeparture;
-import edu.ntnu.stud.utils.UserInputHandler;
+import edu.ntnu.stud.input.UserInputHandler;
 
 /**
  * Adds a train departure to the list of departures.

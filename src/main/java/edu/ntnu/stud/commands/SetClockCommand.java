@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
-import edu.ntnu.stud.utils.UserInputHandler;
+import edu.ntnu.stud.input.UserInputHandler;
 
 /**
  * Set the clock to a given time.

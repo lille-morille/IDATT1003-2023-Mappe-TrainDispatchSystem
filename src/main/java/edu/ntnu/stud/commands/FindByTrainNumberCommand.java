@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
 import edu.ntnu.stud.TrainDispatchApp;
-import edu.ntnu.stud.utils.UserInputHandler;
+import edu.ntnu.stud.input.UserInputHandler;
 
 /**
  * Command for finding train departures by destination.
