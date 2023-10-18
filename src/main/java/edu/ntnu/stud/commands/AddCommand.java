@@ -17,16 +17,18 @@ public final class AddCommand extends Command {
     System.out.println("Add train departure");
 
     var input = new UserInputHandler(app);
-    var trainNumber = input.getTrainNumber();
+
     var departureTime = input.getTime();
     var line = input.getLine();
+    var trainNumber = input.getTrainNumber();
     var destination = input.getDestination();
     var track = input.getTrack();
     var delay = input.getDelay();
 
-    app.addDeparture(
-        new TrainDeparture(departureTime, line, trainNumber, destination,
-            track, delay));
+    TrainDeparture departure = new TrainDeparture(departureTime, line, trainNumber, destination,
+        track, delay);
+
+    app.addDeparture(departure);
     System.out.println("Train departure added successfully!");
 
     // Insert space before printing table
