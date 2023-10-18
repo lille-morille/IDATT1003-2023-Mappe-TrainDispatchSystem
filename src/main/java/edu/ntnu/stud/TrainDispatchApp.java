@@ -213,7 +213,7 @@ public class TrainDispatchApp {
   public int generateTrainNumber() {
     int trainNumber = 1;
     while (true) {
-      if (getDepartureByTrainNumber(trainNumber) == null) {
+      if (getDepartureByTrainNumber(trainNumber).isEmpty()) {
         return trainNumber;
       }
       trainNumber++;
