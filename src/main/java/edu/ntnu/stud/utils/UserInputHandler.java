@@ -60,7 +60,7 @@ public final class UserInputHandler {
   public int getTrack() {
     int track;
     while (true) {
-      System.out.println("Enter track: (-1 for unknown): ");
+      System.out.print("Enter track: (-1 for unknown): ");
       try {
         track = in.nextInt();
       } catch (Exception e) {
@@ -85,7 +85,7 @@ public final class UserInputHandler {
   public String getDestination() {
     String destination = "";
     while (true) {
-      System.out.println("Enter destination: ");
+      System.out.print("Enter destination: ");
       try {
         destination = in.nextLine();
       } catch (Exception e) {
@@ -108,7 +108,7 @@ public final class UserInputHandler {
    * @return The line.
    */
   public String getLine() {
-    System.out.println("Enter line: ");
+    System.out.print("Enter line: ");
     String line;
     while (true) {
       try {
@@ -146,7 +146,7 @@ public final class UserInputHandler {
     // DEPARTURE TIME
     String departureTime;
     while (true) {
-      System.out.println("Enter time (hh:mm): ");
+      System.out.print("Enter time (hh:mm): ");
       departureTime = in.nextLine();
 
       if (!PatternMatcher.matchTime(departureTime)) {
@@ -171,7 +171,7 @@ public final class UserInputHandler {
   public Duration getDelay() {
     int delayMinutes;
     while (true) {
-      System.out.println("Enter the delay in minutes: ");
+      System.out.print("Enter the delay in minutes: ");
       try {
         delayMinutes = in.nextInt();
       } catch (Exception e) {
@@ -200,13 +200,13 @@ public final class UserInputHandler {
     int trainNumber;
 
     while (true) {
-      System.out.println(
+      System.out.print(
           "Enter train number (positive integer), or leave it blank to generate automatically: "
       );
       try {
         var tempTrainNumber = in.nextLine();
         if (tempTrainNumber.isBlank()) {
-          trainNumber = app.generateTrainNumber();
+          return app.generateTrainNumber();
         } else {
           trainNumber = Integer.parseInt(tempTrainNumber);
         }
@@ -229,7 +229,8 @@ public final class UserInputHandler {
       }
 
       if (!isTrainNumberUnique) {
-        System.out.println("Train number must be unique, please try again.");
+        System.out.printf("Train number %s is already taken, please try another train number.%n",
+            trainNumber);
         continue;
       }
       break;
