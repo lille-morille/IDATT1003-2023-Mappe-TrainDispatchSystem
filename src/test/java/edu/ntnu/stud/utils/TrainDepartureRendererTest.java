@@ -32,7 +32,7 @@ class TrainDepartureRendererTest {
   }
 
   @Test
-  void renderDepartures() {
+  void testRenderDepartures() {
     List<TrainDeparture> departures = new ArrayList<>();
     departures.add(new TrainDeparture(
         10,
@@ -90,7 +90,7 @@ class TrainDepartureRendererTest {
   }
 
   @Test
-  void renderEmptyDepartures() {
+  void testRenderEmptyDepartures() {
     List<TrainDeparture> departures = new ArrayList<>();
 
     TrainDepartureRenderer.renderDepartures(departures);

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class TrainDispatchAppTest {
 
   @Test
-  void addDeparture() {
+  void testAddDeparture() {
     TrainDispatchApp app = new TrainDispatchApp();
     app.addDeparture(new TrainDeparture(
         10,
@@ -37,7 +37,7 @@ class TrainDispatchAppTest {
   }
 
   @Test
-  void getDeparturesInCorrectOrder() {
+  void testGetDeparturesInCorrectOrder() {
     // Departures should be ordered by departure time, then track number
     TrainDispatchApp app = new TrainDispatchApp();
 

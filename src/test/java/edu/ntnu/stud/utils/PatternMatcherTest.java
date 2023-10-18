@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class PatternMatcherTest {
 
   @Test
-  void matches() {
+  void testMatchTime() {
     assertTrue(PatternMatcher.matchTime("00:00"));
     assertTrue(PatternMatcher.matchTime("23:59"));
     assertTrue(PatternMatcher.matchTime("12:00"));

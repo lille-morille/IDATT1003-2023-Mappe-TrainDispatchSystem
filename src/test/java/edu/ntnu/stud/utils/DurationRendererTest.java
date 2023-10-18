@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class DurationRendererTest {
 
   @Test
-  void render() {
+  void testRenderDuration() {
     assertEquals("30m", DurationRenderer.render(Duration.ofMinutes(30), false));
     assertEquals("1h 30m", DurationRenderer.render(Duration.ofMinutes(90), false));
     assertEquals("2h 30m", DurationRenderer.render(Duration.ofMinutes(150), false));
