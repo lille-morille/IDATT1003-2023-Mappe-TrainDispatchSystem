@@ -3,6 +3,7 @@ package edu.ntnu.stud.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import edu.ntnu.stud.models.TrainDeparture;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -17,18 +18,20 @@ import org.junit.jupiter.api.Test;
 class TrainDepartureRendererTest {
   // Emulate system.out.println for testing
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private PrintStream originalOut;
 
 
   // Setup custom system.out stream
   @BeforeEach
   void setUp() {
+    originalOut = System.out;
     System.setOut(new PrintStream(outContent));
   }
 
   // Reset the system.out stream
   @AfterEach
   void tearDown() {
-    System.setOut(System.out);
+    System.setOut(originalOut);
   }
 
   @Test
