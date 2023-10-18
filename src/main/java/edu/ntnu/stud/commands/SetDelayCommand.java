@@ -8,7 +8,7 @@ import edu.ntnu.stud.utils.UserInputHandler;
  */
 public final class SetDelayCommand extends Command {
   public SetDelayCommand() {
-    super("set delay", "Sets the delay to a train departure");
+    super("set delay", "Sets the delay of a train departure");
   }
 
   @Override
