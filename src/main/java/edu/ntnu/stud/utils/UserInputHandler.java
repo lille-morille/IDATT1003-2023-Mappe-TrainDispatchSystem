@@ -119,7 +119,7 @@ public final class UserInputHandler {
       if (!PatternMatcher.matchLine(line)) {
         System.out.println(
             """
-                   Invalid line. The accepted format is R, L, RE or F
+                   Invalid line. The accepted format is R, L, RE or FLY
                    followed by one or two digits. Please try again.
                 """);
 
