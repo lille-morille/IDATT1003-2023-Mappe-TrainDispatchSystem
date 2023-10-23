@@ -152,6 +152,19 @@ public class TrainDispatchApp {
         .filter(d -> d.getDestination().equals(destination)).toList();
   }
 
+  /**
+   * Generates a train number that is unique ; not already in use.
+   */
+  public int generateTrainNumber() {
+    int trainNumber = 1;
+    while (true) {
+      if (getDepartureByTrainNumber(trainNumber).isEmpty()) {
+        return trainNumber;
+      }
+      trainNumber++;
+    }
+  }
+
   private LocalTime clock;
 
   public LocalTime getClock() {
@@ -210,18 +223,5 @@ public class TrainDispatchApp {
             0
         ),
     }).toList();
-  }
-
-  /**
-   * Generates a train number that is unique ; not already in use.
-   */
-  public int generateTrainNumber() {
-    int trainNumber = 1;
-    while (true) {
-      if (getDepartureByTrainNumber(trainNumber).isEmpty()) {
-        return trainNumber;
-      }
-      trainNumber++;
-    }
   }
 }
