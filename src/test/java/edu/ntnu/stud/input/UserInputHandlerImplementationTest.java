@@ -118,8 +118,7 @@ class UserInputHandlerImplementationTest {
   void testDestinationWithSpecialChars() {
     simulateInput("!?");
     var e = assertThrows(InvalidInputException.class, () -> getInput().getDestination());
-    assertEquals(InvalidInputException.INVALID_FORMAT_MESSAGE,
-        e.getMessage());
+    assertEquals(InvalidInputException.INVALID_FORMAT_MESSAGE, e.getMessage());
   }
 
   @Test
