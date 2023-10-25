@@ -10,7 +10,7 @@ class TrainDispatchAppTest {
 
   @Test
   void testAddDeparture() {
-    TrainDispatchApp app = new TrainDispatchApp();
+    var app = new TrainDispatchApp();
     app.addDeparture(new TrainDeparture(
         10,
         30,
@@ -39,7 +39,7 @@ class TrainDispatchAppTest {
   @Test
   void testGetDeparturesInCorrectOrder() {
     // Departures should be ordered by departure time, then track number
-    TrainDispatchApp app = new TrainDispatchApp();
+    var app = new TrainDispatchApp();
 
     // 11:40
     app.addDeparture(new TrainDeparture(
