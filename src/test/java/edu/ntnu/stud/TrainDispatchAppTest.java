@@ -87,21 +87,21 @@ class TrainDispatchAppTest {
 
     // Order should be 10:40, 11:00-track-3, 11:00-track-4, 11:40
 
-    LocalTime departure1 = app.getDepartures().get(0).getFinalDepartureTime();
+    LocalTime departure1 = app.getDepartures().get(0).getAdjustedDepartureTime();
     assertEquals(10, departure1.getHour());
     assertEquals(40, departure1.getMinute());
 
     var departure2 = app.getDepartures().get(1);
-    assertEquals(11, departure2.getFinalDepartureTime().getHour());
-    assertEquals(0, departure2.getFinalDepartureTime().getMinute());
+    assertEquals(11, departure2.getAdjustedDepartureTime().getHour());
+    assertEquals(0, departure2.getAdjustedDepartureTime().getMinute());
     assertEquals(3, departure2.getTrack());
 
     var departure3 = app.getDepartures().get(2);
-    assertEquals(11, departure3.getFinalDepartureTime().getHour());
-    assertEquals(0, departure3.getFinalDepartureTime().getMinute());
+    assertEquals(11, departure3.getAdjustedDepartureTime().getHour());
+    assertEquals(0, departure3.getAdjustedDepartureTime().getMinute());
     assertEquals(4, departure3.getTrack());
 
-    LocalTime departure4 = app.getDepartures().get(3).getFinalDepartureTime();
+    LocalTime departure4 = app.getDepartures().get(3).getAdjustedDepartureTime();
     assertEquals(11, departure4.getHour());
     assertEquals(40, departure4.getMinute());
   }

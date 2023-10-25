@@ -124,7 +124,7 @@ public class TrainDispatchApp {
    * @return The list of departures
    */
   public List<TrainDeparture> getDepartures() {
-    departures.sort(Comparator.comparing(TrainDeparture::getFinalDepartureTime)
+    departures.sort(Comparator.comparing(TrainDeparture::getAdjustedDepartureTime)
         .thenComparingInt(TrainDeparture::getTrack));
     return departures;
   }
@@ -181,7 +181,7 @@ public class TrainDispatchApp {
     // Remove departures before this time
     // We use !isAfter because we want to remove departures that are exactly on time
     // isBefore checks for strictly before, not equal
-    departures.removeIf(d -> !d.getFinalDepartureTime().isAfter(clock));
+    departures.removeIf(d -> !d.getAdjustedDepartureTime().isAfter(clock));
   }
 
   private List<TrainDeparture> getSampleDepartures() {

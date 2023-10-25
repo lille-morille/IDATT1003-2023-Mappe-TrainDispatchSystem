@@ -232,7 +232,7 @@ public final class TrainDepartureTest {
         4,
         10
     );
-    assertEquals(departure.getFinalDepartureTime().toString(), "10:40");
+    assertEquals(departure.getAdjustedDepartureTime().toString(), "10:40");
 
     departure = new TrainDeparture(
         10,
@@ -243,7 +243,7 @@ public final class TrainDepartureTest {
         4,
         0
     );
-    assertEquals(departure.getFinalDepartureTime().toString(), "10:30");
+    assertEquals(departure.getAdjustedDepartureTime().toString(), "10:30");
   }
 
   @Test
@@ -353,11 +353,11 @@ public final class TrainDepartureTest {
         10
     );
     assertEquals(departure.getDelay().toMinutes(), 10);
-    assertEquals(departure.getFinalDepartureTime().toString(), "10:40");
+    assertEquals(departure.getAdjustedDepartureTime().toString(), "10:40");
 
     departure.setDelay(Duration.ofMinutes(20));
     assertEquals(departure.getDelay().toMinutes(), 20);
-    assertEquals(departure.getFinalDepartureTime().toString(), "10:50");
+    assertEquals(departure.getAdjustedDepartureTime().toString(), "10:50");
   }
 
   @Test

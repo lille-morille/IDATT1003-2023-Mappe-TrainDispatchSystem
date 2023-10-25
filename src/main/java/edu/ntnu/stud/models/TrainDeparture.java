@@ -88,8 +88,8 @@ public class TrainDeparture {
   /**
    * Returns the final departure time including (any) delay.
    */
-  public LocalTime getFinalDepartureTime() {
-    return departureTime.plusSeconds(delay.toSeconds());
+  public LocalTime getAdjustedDepartureTime() {
+    return departureTime.plusMinutes(delay.toMinutes());
   }
 
   /**
@@ -166,7 +166,7 @@ public class TrainDeparture {
    */
   public String getCoreInfo() {
     return String.format("%s %s-%s",
-        getFinalDepartureTime().toString(),
+        getAdjustedDepartureTime().toString(),
         getLine(),
         getDestination());
   }
@@ -178,7 +178,7 @@ public class TrainDeparture {
     var lineColor = Colors.getForLine(getLine(), false);
     var lineColorBold = Colors.getForLine(getLine(), true);
     return String.format("%s %s-%s",
-        (isDelayed() ? Colors.YELLOW : "") + getFinalDepartureTime().toString(),
+        (isDelayed() ? Colors.YELLOW : "") + getAdjustedDepartureTime().toString(),
         lineColorBold + getLine(),
         Colors.RESET + lineColor + getDestination()) + Colors.RESET;
   }
@@ -228,7 +228,7 @@ public class TrainDeparture {
         getTrainNumber(),
         Colors.getForLine(getLine(), true) + getLine() + Colors.RESET,
         getDestination(),
-        getFinalDepartureTime(),
+        getAdjustedDepartureTime(),
         getTrack());
     if (!delayString.isEmpty()) {
       return str + " with a delay of " + delayString;
