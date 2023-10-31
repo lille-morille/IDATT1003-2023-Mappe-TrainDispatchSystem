@@ -76,7 +76,7 @@ public class TrainDepartureRenderer {
             "=");
     str += "track|train";
     str += new String(
-        new char[Math.max(maxLengths.maxTrackDelayLength() - "track|train".length() + 3, 3)])
+        new char[Math.max(maxLengths.maxTrackDelayLength() - "train|track".length() + 3, 3)])
         .replace("\0", "=");
     return str;
   }

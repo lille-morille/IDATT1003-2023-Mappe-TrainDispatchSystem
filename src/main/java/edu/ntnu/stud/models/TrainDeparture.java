@@ -198,8 +198,8 @@ public class TrainDeparture {
    */
   public String getTrackDelayInfoWithColor() {
     return String.format("%s n.%s %s",
-        getTrack() == -1 ? "| |" : "|" + getTrack() + "|",
         getTrainNumber(),
+        getTrack() == -1 ? "| |" : "|" + getTrack() + "|",
         (isDelayed() ? Colors.YELLOW : "") + DurationRenderer.render(getDelay(), true))
         + Colors.RESET;
   }
