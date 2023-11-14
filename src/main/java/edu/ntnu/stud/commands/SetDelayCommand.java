@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.input.UserInputHandler;
+import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * Sets the delay to a train departure.
@@ -12,12 +12,12 @@ public final class SetDelayCommand extends Command {
   }
 
   @Override
-  public void execute(TrainDispatchApp app) {
-    new PrintDeparturesCommand().execute(app);
+  public void execute(TrainDepartureManager manager) {
+    new PrintDeparturesCommand().execute(manager);
 
     System.out.println("Add delay to a train departure");
 
-    var input = new UserInputHandler(app);
+    var input = new UserInputHandler(manager);
 
     var departure = input.getDeparture();
     var delay = input.getDelay();
@@ -26,6 +26,6 @@ public final class SetDelayCommand extends Command {
 
     System.out.println("Delay added successfully!");
     System.out.println();
-    new PrintDeparturesCommand().execute(app);
+    new PrintDeparturesCommand().execute(manager);
   }
 }

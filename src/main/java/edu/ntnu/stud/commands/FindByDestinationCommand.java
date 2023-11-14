@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.input.UserInputHandler;
+import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * Command for finding train departures by destination.
@@ -12,13 +12,13 @@ public class FindByDestinationCommand extends Command {
   }
 
   @Override
-  public void execute(TrainDispatchApp app) {
+  public void execute(TrainDepartureManager manager) {
     System.out.println("Find a train departure by train number");
 
-    var input = new UserInputHandler(app);
+    var input = new UserInputHandler(manager);
     var destination = input.getDestination();
 
-    var departures = app.getDeparturesByDestination(destination);
+    var departures = manager.getDeparturesByDestination(destination);
 
     if (departures.isEmpty()) {
       System.out.println("No departures found");

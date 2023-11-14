@@ -1,7 +1,7 @@
 package edu.ntnu.stud.input;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDeparture;
+import edu.ntnu.stud.models.TrainDepartureManager;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -11,11 +11,11 @@ import java.util.Scanner;
  * Should not be used directly, but through UserInputHandler.
  */
 class UserInputHandlerImplementation {
-  private final TrainDispatchApp app;
+  private final TrainDepartureManager manager;
   private final Scanner in;
 
-  public UserInputHandlerImplementation(TrainDispatchApp app) {
-    this.app = app;
+  public UserInputHandlerImplementation(TrainDepartureManager manager) {
+    this.manager = manager;
     this.in = new Scanner(System.in);
   }
 
@@ -32,7 +32,7 @@ class UserInputHandlerImplementation {
       throw new InvalidInputException("Train number must be positive, please try again.");
     }
 
-    var maybeDeparture = app.getDepartureByTrainNumber(trainNumber);
+    var maybeDeparture = manager.getDepartureByTrainNumber(trainNumber);
 
     if (maybeDeparture.isEmpty()) {
       throw new InvalidInputException("No train found with this train number. Please try again.");
@@ -124,7 +124,7 @@ class UserInputHandlerImplementation {
     try {
       var tempTrainNumber = in.nextLine();
       if (tempTrainNumber.isBlank()) {
-        return app.generateTrainNumber();
+        return manager.generateTrainNumber();
       } else {
         trainNumber = Integer.parseInt(tempTrainNumber);
       }
@@ -137,7 +137,7 @@ class UserInputHandlerImplementation {
     }
 
     boolean isTrainNumberUnique = true;
-    for (TrainDeparture departure : app.getDepartures()) {
+    for (TrainDeparture departure : manager.getDepartures()) {
       if (departure.getTrainNumber() == trainNumber) {
         isTrainNumberUnique = false;
         break;

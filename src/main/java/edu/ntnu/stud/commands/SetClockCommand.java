@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.input.UserInputHandler;
+import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * Set the clock to a given time.
@@ -12,15 +12,15 @@ public class SetClockCommand extends Command {
   }
 
   @Override
-  public void execute(TrainDispatchApp app) {
+  public void execute(TrainDepartureManager manager) {
     System.out.println("Set the clock to a given time");
 
-    var input = new UserInputHandler(app);
+    var input = new UserInputHandler(manager);
     var time = input.getTime();
 
-    app.setClock(time);
+    manager.setClock(time);
 
     System.out.println();
-    new PrintDeparturesCommand().execute(app);
+    new PrintDeparturesCommand().execute(manager);
   }
 }

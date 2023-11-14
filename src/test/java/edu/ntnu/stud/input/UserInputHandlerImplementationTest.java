@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDeparture;
+import edu.ntnu.stud.models.TrainDepartureManager;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -14,14 +15,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserInputHandlerImplementationTest {
-  private TrainDispatchApp app;
+  private TrainDepartureManager manager;
   private final PrintStream originalOut = System.out;
   private final InputStream originalIn = System.in;
 
   @BeforeEach
   void setUp() {
-    app = new TrainDispatchApp();
-    app.addDeparture(new TrainDeparture(
+    manager = new TrainDepartureManager();
+    manager.addDeparture(new TrainDeparture(
         10,
         30,
         "L4",

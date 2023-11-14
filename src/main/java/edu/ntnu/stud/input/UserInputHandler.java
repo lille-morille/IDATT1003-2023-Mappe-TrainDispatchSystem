@@ -1,7 +1,7 @@
 package edu.ntnu.stud.input;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.models.TrainDeparture;
+import edu.ntnu.stud.models.TrainDepartureManager;
 import java.time.Duration;
 import java.time.LocalTime;
 
@@ -11,8 +11,8 @@ import java.time.LocalTime;
 public final class UserInputHandler {
   private final UserInputHandlerImplementation input;
 
-  public UserInputHandler(TrainDispatchApp app) {
-    input = new UserInputHandlerImplementation(app);
+  public UserInputHandler(TrainDepartureManager manager) {
+    input = new UserInputHandlerImplementation(manager);
   }
 
   private <T> T handleInput(InputMethod<T> inputMethod) {

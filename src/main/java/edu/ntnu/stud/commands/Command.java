@@ -1,6 +1,6 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
+import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * Base class for all commands.
@@ -42,7 +42,7 @@ public abstract class Command {
   /**
    * Executes the command.
    *
-   * @param app The application to execute the command on
+   * @param manager The manager to execute the command on
    */
-  public abstract void execute(TrainDispatchApp app);
+  public abstract void execute(TrainDepartureManager manager);
 }

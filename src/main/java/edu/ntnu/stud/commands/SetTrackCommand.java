@@ -1,7 +1,7 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
 import edu.ntnu.stud.input.UserInputHandler;
+import edu.ntnu.stud.models.TrainDepartureManager;
 
 /**
  * Command for setting a new track on a train.
@@ -12,10 +12,10 @@ public class SetTrackCommand extends Command {
   }
 
   @Override
-  public void execute(TrainDispatchApp app) {
+  public void execute(TrainDepartureManager manager) {
     System.out.println("Set track for a train");
 
-    var input = new UserInputHandler(app);
+    var input = new UserInputHandler(manager);
 
     var departure = input.getDeparture();
     var track = input.getTrack();
@@ -23,6 +23,6 @@ public class SetTrackCommand extends Command {
     departure.setTrack(track);
     System.out.println("Track set successfully!");
     System.out.println();
-    new PrintDeparturesCommand().execute(app);
+    new PrintDeparturesCommand().execute(manager);
   }
 }

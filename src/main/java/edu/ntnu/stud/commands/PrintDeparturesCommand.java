@@ -1,6 +1,6 @@
 package edu.ntnu.stud.commands;
 
-import edu.ntnu.stud.TrainDispatchApp;
+import edu.ntnu.stud.models.TrainDepartureManager;
 import edu.ntnu.stud.utils.TrainDepartureRenderer;
 
 /**
@@ -12,8 +12,8 @@ public final class PrintDeparturesCommand extends Command {
   }
 
   @Override
-  public void execute(TrainDispatchApp app) {
-    System.out.println("Clock: " + app.getClock().toString());
-    TrainDepartureRenderer.renderDepartures(app.getDepartures());
+  public void execute(TrainDepartureManager manager) {
+    System.out.println("Clock: " + manager.getClock().toString());
+    TrainDepartureRenderer.renderDepartures(manager.getDepartures());
   }
 }
