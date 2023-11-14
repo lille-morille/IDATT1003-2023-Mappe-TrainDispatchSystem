@@ -50,6 +50,11 @@ public class TrainDispatchApp {
       new ExitCommand(),
   };
 
+  /**
+   * Runs a commend input string.
+   *
+   * @param command The command to execute, either by name or index
+   */
   private void runCommand(String command) {
     try {
       // Try to parse the command as a number
@@ -167,6 +172,11 @@ public class TrainDispatchApp {
 
   private LocalTime clock;
 
+  /**
+   * Gets the clock.
+   *
+   * @return The clock.
+   */
   public LocalTime getClock() {
     return clock;
   }
