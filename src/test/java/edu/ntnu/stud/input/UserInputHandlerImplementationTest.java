@@ -40,7 +40,7 @@ class UserInputHandlerImplementationTest {
   }
 
   UserInputHandlerImplementation getInput() {
-    return new UserInputHandlerImplementation(app);
+    return new UserInputHandlerImplementation(manager);
   }
 
   void simulateInput(String input) {

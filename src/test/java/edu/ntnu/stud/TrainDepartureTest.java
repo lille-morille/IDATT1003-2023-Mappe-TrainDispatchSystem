@@ -466,8 +466,8 @@ public final class TrainDepartureTest {
     );
 
     assertEquals(
-        "\u001B[33m10:40 \u001B[1;32mL4-\u001B[0m\u001B[32mBergen\u001B[0m 200 n.|1| "
-            + "\u001B[33m10m delay\u001B[0m    ",
+        "\u001B[33m10:40 \u001B[1;32mL4-\u001B[0m\u001B[32mBergen\u001B[0m 200 n.|1| \u001B"
+            + "[33m10m delay\u001B[0m   ",
         departure.toFormattedString(15, 21));
 
     // Another example
