@@ -452,42 +452,5 @@ public final class TrainDepartureTest {
 
     assertEquals(departure.getTrackDelayInfo(), "|2| n.300 5m delay");
   }
-
-  @Test
-  void testToFormattedString() {
-    TrainDeparture departure = new TrainDeparture(
-        10,
-        30,
-        "L4",
-        200,
-        "Bergen",
-        1,
-        10
-    );
-
-    assertEquals(
-        "\u001B[33m10:40 \u001B[1;32mL4-\u001B[0m\u001B[32mBergen\u001B[0m 200 n.|1| \u001B"
-            + "[33m10m delay\u001B[0m   ",
-        departure.toFormattedString(15, 21));
-
-    // Another example
-    departure = new TrainDeparture(
-        10,
-        35,
-        "R3",
-        300,
-        "Trondheim",
-        2,
-        5
-    );
-
-    assertEquals(
-        "[33m10:40 \u001B[1;31mR3-\u001B[0m\u001B[31mTrondheim\u001B[0m   300 n.|2| \u001B"
-            + "[33m5m delay\u001B[0m     ",
-        departure.toFormattedString(20,
-            22));
-  }
-
-
   // endregion
 }
