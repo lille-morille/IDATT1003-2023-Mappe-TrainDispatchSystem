@@ -4,7 +4,6 @@ import edu.ntnu.stud.utils.Colors;
 import edu.ntnu.stud.utils.DurationRenderer;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatterBuilder;
 
 /**
  * Contains data about one train departure.
