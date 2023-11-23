@@ -162,65 +162,6 @@ public class TrainDeparture {
     this.delay = delay;
   }
 
-  /**
-   * Returns the first pieces of information to display in the departure table.
-   */
-  public String getCoreInfo() {
-    return String.format("%s %s-%s",
-        getAdjustedDepartureTime().toString(),
-        getLine(),
-        getDestination());
-  }
-
-  /**
-   * Returns the first pieces of information to display in the departure table, with color.
-   */
-  public String getCoreInfoWithColor() {
-    var lineColor = Colors.getForLine(getLine(), false);
-    var lineColorBold = Colors.getForLine(getLine(), true);
-    return String.format("%s %s-%s",
-        (isDelayed() ? Colors.YELLOW : "") + getAdjustedDepartureTime().toString(),
-        lineColorBold + getLine(),
-        Colors.RESET + lineColor + getDestination()) + Colors.RESET;
-  }
-
-  /**
-   * Returns the second pieces of information to display in the departure table.
-   */
-  public String getTrackDelayInfo() {
-    return String.format("|%s| n.%s %s",
-        getTrack(),
-        getTrainNumber(),
-        DurationRenderer.render(getDelay(), true));
-  }
-
-  /**
-   * Returns the second pieces of information to display in the departure table, with color.
-   */
-  public String getTrackDelayInfoWithColor() {
-    return String.format("%s n.%s %s",
-        getTrack() == -1 ? "| |" : "|" + getTrack() + "|",
-        getTrainNumber(),
-        (isDelayed() ? Colors.YELLOW : "") + DurationRenderer.render(getDelay(), true))
-        + Colors.RESET;
-  }
-
-  /**
-   * Returns a formatted string with the departure information.
-   * This is used to align the departure information in columns.
-   *
-   * @param maxCoreLength       The maximum length of the core info across all train departures.
-   * @param maxTrackDelayLength The maximum length of the track delay info across all train
-   * @return A formatted string with the departure information, that fits with the rest.
-   */
-  public String toFormattedString(int maxCoreLength, int maxTrackDelayLength) {
-    return String.format("%s%s%s%s",
-        getCoreInfoWithColor(),
-        " ".repeat(maxCoreLength - getCoreInfo().length() + 1),
-        getTrackDelayInfoWithColor(),
-        " ".repeat(maxTrackDelayLength - getTrackDelayInfo().length() + 1));
-  }
-
   @Override
   public String toString() {
     String delayString = DurationRenderer.render(getDelay(), false);

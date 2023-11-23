@@ -44,7 +44,7 @@ public class TrainDepartureRenderer {
    */
   private static void renderDeparture(TrainDeparture departure, MaxLengths maxLengths) {
     System.out.print("|  ");
-    System.out.print(departure.toFormattedString(maxLengths.maxCoreLength(),
+    System.out.print(departureToFormattedString(departure, maxLengths.maxCoreLength(),
         maxLengths.maxTrackDelayLength()));
     System.out.println(" |");
   }
@@ -96,8 +96,8 @@ public class TrainDepartureRenderer {
       int maxTrackDelayLength = 0;
 
       for (TrainDeparture departure : departures) {
-        var coreLength = departure.getCoreInfo().length();
-        var trackDelayLength = departure.getTrackDelayInfo().length();
+        var coreLength = getCoreInfoString(departure).length();
+        var trackDelayLength = getTrackDelayInfoString(departure).length();
 
         if (coreLength > maxCoreLength) {
           maxCoreLength = coreLength;
@@ -108,5 +108,69 @@ public class TrainDepartureRenderer {
       }
       return new MaxLengths(maxCoreLength, maxTrackDelayLength);
     }
+  }
+
+  /**
+   * Returns the second pieces of information to display in the departure table.
+   */
+  public static String getTrackDelayInfoString(TrainDeparture departure) {
+    return String.format("|%s| n.%s %s",
+        departure.getTrack(),
+        departure.getTrainNumber(),
+        DurationRenderer.render(departure.getDelay(), true));
+  }
+
+
+  /**
+   * Returns the first pieces of information to display in the departure table.
+   */
+  public static String getCoreInfoString(TrainDeparture departure) {
+    return String.format("%s %s-%s",
+        departure.getAdjustedDepartureTime().toString(),
+        departure.getLine(),
+        departure.getDestination());
+  }
+
+  /**
+   * Returns the first pieces of information to display in the departure table, with color.
+   */
+  public static String getCoreInfoWithColorString(TrainDeparture departure) {
+    var lineColor = Colors.getForLine(departure.getLine(), false);
+    var lineColorBold = Colors.getForLine(departure.getLine(), true);
+    return String.format("%s %s-%s",
+        (departure.isDelayed() ? Colors.YELLOW : "")
+            + departure.getAdjustedDepartureTime().toString(),
+        lineColorBold + departure.getLine(),
+        Colors.RESET + lineColor + departure.getDestination()) + Colors.RESET;
+  }
+
+
+  /**
+   * Returns the second pieces of information to display in the departure table, with color.
+   */
+  public static String getTrackDelayInfoWithColorString(TrainDeparture departure) {
+    return String.format("%s n.%s %s",
+        departure.getTrack() == -1 ? "| |" : "|" + departure.getTrack() + "|",
+        departure.getTrainNumber(),
+        (departure.isDelayed() ? Colors.YELLOW : "") + DurationRenderer.render(departure.getDelay(),
+            true))
+        + Colors.RESET;
+  }
+
+  /**
+   * Returns a formatted string with the departure information.
+   * This is used to align the departure information in columns.
+   *
+   * @param maxCoreLength       The maximum length of the core info across all train departures.
+   * @param maxTrackDelayLength The maximum length of the track delay info across all train
+   * @return A formatted string with the departure information, that fits with the rest.
+   */
+  public static String departureToFormattedString(TrainDeparture departure, int maxCoreLength,
+                                                  int maxTrackDelayLength) {
+    return String.format("%s%s%s%s",
+        getCoreInfoWithColorString(departure),
+        " ".repeat(maxCoreLength - getCoreInfoString(departure).length() + 1),
+        getTrackDelayInfoWithColorString(departure),
+        " ".repeat(maxTrackDelayLength - getTrackDelayInfoString(departure).length() + 1));
   }
 }
