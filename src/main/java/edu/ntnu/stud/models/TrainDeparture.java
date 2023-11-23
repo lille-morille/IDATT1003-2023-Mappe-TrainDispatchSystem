@@ -4,6 +4,7 @@ import edu.ntnu.stud.utils.Colors;
 import edu.ntnu.stud.utils.DurationRenderer;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatterBuilder;
 
 /**
  * Contains data about one train departure.
@@ -187,7 +188,7 @@ public class TrainDeparture {
    * Returns the second pieces of information to display in the departure table.
    */
   public String getTrackDelayInfo() {
-    return String.format("|%d| n.%s %s",
+    return String.format("|%s| n.%s %s",
         getTrack(),
         getTrainNumber(),
         DurationRenderer.render(getDelay(), true));
@@ -198,8 +199,8 @@ public class TrainDeparture {
    */
   public String getTrackDelayInfoWithColor() {
     return String.format("%s n.%s %s",
-        getTrainNumber(),
         getTrack() == -1 ? "| |" : "|" + getTrack() + "|",
+        getTrainNumber(),
         (isDelayed() ? Colors.YELLOW : "") + DurationRenderer.render(getDelay(), true))
         + Colors.RESET;
   }

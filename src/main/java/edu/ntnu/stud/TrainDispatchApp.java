@@ -6,6 +6,7 @@ import edu.ntnu.stud.commands.ExitCommand;
 import edu.ntnu.stud.commands.FindByDestinationCommand;
 import edu.ntnu.stud.commands.FindByTrainNumberCommand;
 import edu.ntnu.stud.commands.PrintDeparturesCommand;
+import edu.ntnu.stud.commands.SayHiCommand;
 import edu.ntnu.stud.commands.SetClockCommand;
 import edu.ntnu.stud.commands.SetDelayCommand;
 import edu.ntnu.stud.commands.SetTrackCommand;
@@ -35,7 +36,7 @@ public class TrainDispatchApp {
 
   private void init() {
     System.out.println("Starting train dispatch application...");
-    for (var departure : manager.getSampleDepartures()) {
+    for (var departure : TrainDepartureManager.getSampleDepartures()) {
       manager.addDeparture(departure);
     }
   }

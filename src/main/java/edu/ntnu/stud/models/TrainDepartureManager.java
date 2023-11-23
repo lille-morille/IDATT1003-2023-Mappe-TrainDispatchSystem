@@ -27,12 +27,10 @@ public class TrainDepartureManager {
    *                                  application state.
    */
   public void addDeparture(TrainDeparture departure) throws IllegalStateException {
-    // Check that the train number is unique
-    for (TrainDeparture d : departures) {
-      if (d.getTrainNumber() == departure.getTrainNumber()) {
-        throw new IllegalStateException("Train number must be unique");
-      }
-    }
+    departures.stream().filter(d -> d.getTrainNumber() == departure.getTrainNumber()).findFirst()
+        .ifPresent(d -> {
+          throw new IllegalStateException("Train number must be unique");
+        });
 
     departures.add(departure);
   }
@@ -113,7 +111,7 @@ public class TrainDepartureManager {
    * Returns a set of sample departures to use as a starting point in the application,
    * or for testing purposes.
    */
-  public List<TrainDeparture> getSampleDepartures() {
+  public static List<TrainDeparture> getSampleDepartures() {
     return Arrays.stream(new TrainDeparture[] {
         new TrainDeparture(
             10,

@@ -102,7 +102,7 @@ class UserInputHandlerImplementation {
     int delayMinutes;
     System.out.print("Enter the delay in minutes: ");
     try {
-      delayMinutes = in.nextInt();
+      delayMinutes = Integer.parseInt(in.nextLine());
     } catch (Exception e) {
       throw new InvalidInputException();
     }
