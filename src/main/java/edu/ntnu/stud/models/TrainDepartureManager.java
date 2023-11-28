@@ -100,7 +100,12 @@ public class TrainDepartureManager {
    */
   public void setClock(LocalTime clock) {
     this.clock = clock;
+  }
 
+  /**
+   * Removes all departures that have already departed.
+   */
+  public void removeDepartedDepartures() {
     // Remove departures before this time
     // We use !isAfter because we want to remove departures that are exactly on time
     // isBefore checks for strictly before, not equal
