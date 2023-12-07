@@ -14,7 +14,7 @@ import java.util.Optional;
 public class TrainDepartureManager {
   public TrainDepartureManager() {
     departures = new ArrayList<>();
-    clock = LocalTime.of(0, 0);
+    clock = LocalTime.MIN;
   }
 
   private final ArrayList<TrainDeparture> departures;
@@ -42,6 +42,7 @@ public class TrainDepartureManager {
    * @return The list of departures
    */
   public List<TrainDeparture> getDepartures() {
+    removeDepartedDepartures();
     departures.sort(Comparator.comparing(TrainDeparture::getAdjustedDepartureTime)
         .thenComparingInt(TrainDeparture::getTrack));
     return departures;

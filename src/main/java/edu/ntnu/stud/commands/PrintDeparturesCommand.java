@@ -13,7 +13,6 @@ public final class PrintDeparturesCommand extends Command {
 
   @Override
   public void execute(TrainDepartureManager manager) {
-    manager.removeDepartedDepartures();
     System.out.println("Clock: " + manager.getClock().toString());
     TrainDepartureRenderer.renderDepartures(manager.getDepartures());
   }
