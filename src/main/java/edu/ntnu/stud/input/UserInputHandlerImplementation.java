@@ -23,7 +23,7 @@ class UserInputHandlerImplementation {
     int trainNumber;
     System.out.print("Which train? (train number): ");
     try {
-      trainNumber = in.nextInt();
+      trainNumber = Integer.parseInt(in.nextLine());
     } catch (Exception e) {
       throw new InvalidInputException();
     }
@@ -45,7 +45,7 @@ class UserInputHandlerImplementation {
     int track;
     System.out.print("Enter track: (-1 for unknown): ");
     try {
-      track = in.nextInt();
+      track = Integer.parseInt(in.nextLine());
     } catch (Exception e) {
       throw new InvalidInputException();
     }
@@ -72,7 +72,7 @@ class UserInputHandlerImplementation {
 
   public String getLine() throws InvalidInputException {
     String line;
-    System.out.print("Enter line (L, R, F or FLY followed by 1-2 digits) : ");
+    System.out.print("Enter line (L, R, RE, F or FLY followed by 1-2 digits) : ");
     try {
       line = in.nextLine();
     } catch (Exception e) {
