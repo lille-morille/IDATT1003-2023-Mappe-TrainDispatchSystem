@@ -9,48 +9,55 @@ class PatternMatcherTest {
 
   @Test
   void testMatchTime() {
-    assertDoesNotThrow(() -> PatternMatcher.testTimeFormat("00:00"));
-    assertDoesNotThrow(() -> PatternMatcher.testTimeFormat("23:59"));
-    assertDoesNotThrow(() -> PatternMatcher.testTimeFormat("12:00"));
-    assertDoesNotThrow(() -> PatternMatcher.testTimeFormat("01:00"));
+    assertDoesNotThrow(() -> PatternMatcher.assertTimeFormatIsValid("00:00"));
+    assertDoesNotThrow(() -> PatternMatcher.assertTimeFormatIsValid("23:59"));
+    assertDoesNotThrow(() -> PatternMatcher.assertTimeFormatIsValid("12:00"));
+    assertDoesNotThrow(() -> PatternMatcher.assertTimeFormatIsValid("01:00"));
 
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("24:00"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("00:60"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("00:0"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("f0:00"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("AB:CD"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testTimeFormat("12:4!"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertTimeFormatIsValid("24:00"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertTimeFormatIsValid("00:60"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertTimeFormatIsValid("00:0"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertTimeFormatIsValid("f0:00"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertTimeFormatIsValid("AB:CD"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertTimeFormatIsValid("12:4!"));
   }
 
   @Test
   void testMatchLine() {
-    assertDoesNotThrow(() -> PatternMatcher.testLineFormat("L1"));
-    assertDoesNotThrow(() -> PatternMatcher.testLineFormat("F12"));
-    assertDoesNotThrow(() -> PatternMatcher.testLineFormat("RE21"));
-    assertDoesNotThrow(() -> PatternMatcher.testLineFormat("FLY1"));
+    assertDoesNotThrow(() -> PatternMatcher.assertLineFormatIsValid("L1"));
+    assertDoesNotThrow(() -> PatternMatcher.assertLineFormatIsValid("F12"));
+    assertDoesNotThrow(() -> PatternMatcher.assertLineFormatIsValid("RE21"));
+    assertDoesNotThrow(() -> PatternMatcher.assertLineFormatIsValid("FLY1"));
 
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L123"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L1A"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L1!"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L1 "));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testLineFormat("L 1"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L123"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L1A"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L1!"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L1 "));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertLineFormatIsValid("L 1"));
   }
 
   @Test
   void matchDestination() {
-    assertDoesNotThrow(() -> PatternMatcher.testDestinationFormat("Bergen"));
-    assertDoesNotThrow(() -> PatternMatcher.testDestinationFormat("ÆØÅæøå"));
-    assertDoesNotThrow(() -> PatternMatcher.testDestinationFormat("trondheim"));
-    assertDoesNotThrow(() -> PatternMatcher.testDestinationFormat("fdsjflkdsjfkdsljfkds"));
+    assertDoesNotThrow(() -> PatternMatcher.assertDestinationFormatIsValid("Bergen"));
+    assertDoesNotThrow(() -> PatternMatcher.assertDestinationFormatIsValid("ÆØÅæøå"));
+    assertDoesNotThrow(() -> PatternMatcher.assertDestinationFormatIsValid("trondheim"));
+    assertDoesNotThrow(() -> PatternMatcher.assertDestinationFormatIsValid("fdsjflkdsjfkdsljfkds"));
 
     assertThrows(InvalidInputException.class,
-        () -> PatternMatcher.testDestinationFormat("Trondheim1"));
+        () -> PatternMatcher.assertDestinationFormatIsValid("Trondheim1"));
     assertThrows(InvalidInputException.class,
-        () -> PatternMatcher.testDestinationFormat("abc_def"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testDestinationFormat("abc123"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testDestinationFormat("!"));
-    assertThrows(InvalidInputException.class, () -> PatternMatcher.testDestinationFormat(
+        () -> PatternMatcher.assertDestinationFormatIsValid("abc_def"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertDestinationFormatIsValid("abc123"));
+    assertThrows(InvalidInputException.class,
+        () -> PatternMatcher.assertDestinationFormatIsValid("!"));
+    assertThrows(InvalidInputException.class, () -> PatternMatcher.assertDestinationFormatIsValid(
         "fdsjflkdsjfkdsljfkdsfdsfds"));
   }
 }

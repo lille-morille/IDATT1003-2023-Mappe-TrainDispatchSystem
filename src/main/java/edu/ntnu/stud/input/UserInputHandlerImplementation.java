@@ -65,7 +65,7 @@ class UserInputHandlerImplementation {
       throw new InvalidInputException();
     }
 
-    PatternMatcher.testDestinationFormat(destination);
+    PatternMatcher.assertDestinationFormatIsValid(destination);
 
     return destination;
   }
@@ -79,7 +79,7 @@ class UserInputHandlerImplementation {
       throw new InvalidInputException("You must specify a line, please try again.");
     }
 
-    PatternMatcher.testLineFormat(line);
+    PatternMatcher.assertLineFormatIsValid(line);
 
     return line;
   }
@@ -89,7 +89,7 @@ class UserInputHandlerImplementation {
     System.out.print("Enter time (hh:mm): ");
     departureTime = in.nextLine();
 
-    PatternMatcher.testTimeFormat(departureTime);
+    PatternMatcher.assertTimeFormatIsValid(departureTime);
 
     String[] parts = departureTime.split(":");
     int hour = Integer.parseInt(parts[0]);

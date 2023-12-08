@@ -22,21 +22,22 @@ final class PatternMatcher {
   /**
    * Match a time string in the format hh:mm.
    */
-  public static void testTimeFormat(String input) throws InvalidInputException {
+  public static void assertTimeFormatIsValid(String input) throws InvalidInputException {
     assertFormat(timeRegex, input);
   }
 
   /**
    * Match a line string in the format L1, F12, RE21 etc.
    */
-  public static void testLineFormat(String input) throws InvalidInputException {
+  public static void assertLineFormatIsValid(String input) throws InvalidInputException {
     assertFormat(lineRegex, input);
   }
 
   /**
    * Match a destination string of max 20 length consisting of letters, hyphens and spaces.
    */
-  public static void testDestinationFormat(String destination) throws InvalidInputException {
+  public static void assertDestinationFormatIsValid(String destination)
+      throws InvalidInputException {
     assertFormat(destinationRegex, destination);
   }
 }

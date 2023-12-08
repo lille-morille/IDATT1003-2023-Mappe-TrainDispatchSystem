@@ -2,6 +2,7 @@ package edu.ntnu.stud.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.sun.source.tree.CaseTree;
 import edu.ntnu.stud.models.TrainDeparture;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -18,7 +19,6 @@ class TrainDepartureRendererTest {
   // Emulate system.out.println for testing
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private PrintStream originalOut;
-
 
   // Setup custom system.out stream
   @BeforeEach
