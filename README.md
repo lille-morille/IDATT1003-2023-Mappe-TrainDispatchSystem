@@ -5,7 +5,7 @@ STUDENT ID = 111708
 
 ## Project description
 
-This project is a portfolio project for the course IDATT1003 - Programming 2 at NTNU. The project is a Java application that can be used to manage a database of students and courses. The application can be used to add, remove, edit and view train departures.
+This project is a portfolio project for the course IDATT1003 - Programming 1 at NTNU. The project is a Java application that can be used to manage a database of students and courses. The application can be used to add, remove, edit and view train departures.
 
 ## Project structure
 
